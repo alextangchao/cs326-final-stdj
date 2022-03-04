@@ -1,5 +1,4 @@
 # cs326-final-stdj
-hi
 
 ## Team Name
 CS326 - STDJ
@@ -14,9 +13,12 @@ Food at Umass
 No.1 Dining Hall Guide
 
 ## Team Overview
-Chaolong Tang: alextangchao
+Chaolong Tang: alextangchao 
+
 Xuming Deng: Silvennnn
+
 RuiLong Jiang: AMOOOMA
+
 Hongwei Shu
 
 ## Innovative Idea
