@@ -1,5 +1,3 @@
-# cs326-final-stdj
-
 ## Team Name
 CS326 - STDJ
 
