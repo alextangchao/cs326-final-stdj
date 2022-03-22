@@ -1,0 +1,30 @@
+.review-title {
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.review-number {
+    font-size: 10px;
+    color: lightgrey;
+}
+
+.review-rating {
+    font-size:13px;
+    color: black;
+}
+
+.review-body {
+    font-family: Georgia;
+    font-size:13px;
+}
+/* Centered text */
+.centered {
+    font-size:70px;
+    font-weight: bold;
+    font-family:Copperplate;
+    color:white;
+    position: absolute;
+    top: 40%;
+    left: 33%;
+}
+
