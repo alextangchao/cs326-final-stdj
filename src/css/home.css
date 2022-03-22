@@ -1,5 +1,5 @@
 html, body { 
-    height: 100%; 
+    height: 100%;
     width: 100%;
     overflow: hidden;
 }
@@ -9,6 +9,41 @@ div {
     width: 100%; 
 }
 
+.large-frame-container {
+    width: 1080px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.flex-row-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.flex-column-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.review-container {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    margin-left: 40px;
+}
+
+.review {
+    background-color: ghostwhite;
+    margin-top: 40px;
+    display: flex;
+    flex-direction: row;
+    height: 270px;
+}
+
 .img-container {
     margin: 0;
     width: 100%;
@@ -16,7 +51,13 @@ div {
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden
+    overflow: hidden;
+}
+
+.sm-rounded-container {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
 }
 
 img {
@@ -25,24 +66,27 @@ img {
     min-height: 100%;
 }
 
-.dining-hall-select > ul {
+.dining-hall-select {
     width: 30%;
-    height: auto;
+    height: 50%;
+}
+
+.dining-hall-select > ul {
+    width: auto;
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
-    border: 2px solid black;
+    /*border: 2px solid lightgrey;*/
 }
 
 .dining-hall-select > ul > li {
     display: block;
     text-align: center;
-    padding: 10%;
     text-decoration: none;
     width: 100%;
-    height: 20%;
     font-size: x-large;
-    border: 2px solid black;
-    margin:-2px -2px -2px 0;
+    border: 2px solid lightgrey;
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
