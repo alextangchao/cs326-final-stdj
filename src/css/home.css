@@ -135,9 +135,9 @@ a {
 
 .review > .flex-column-container > .flex-row-container {
     padding-top: 5px; 
-    height:15px; 
+    height:20px; 
     width: 40%;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 }
 
 .review-pic {
