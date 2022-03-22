@@ -1,7 +1,12 @@
-html, body { 
+body {
     height: 100%;
     width: 100%;
-    overflow: hidden;
+}
+
+html{
+    height: 100%;
+    width: 100%;
+    margin:auto;
 }
 
 div { 
@@ -37,11 +42,13 @@ div {
 }
 
 .review {
-    background-color: ghostwhite;
-    margin-top: 40px;
+    background-color: whitesmoke;
+    margin-top: 30px;
     display: flex;
     flex-direction: row;
     height: 270px;
+    border-top: 2px solid lightgrey;
+    border-bottom: 2px solid lightgrey;
 }
 
 .img-container {
@@ -52,12 +59,19 @@ div {
     justify-content: center;
     align-items: center;
     overflow: hidden;
+    text-align: center;
+    position: relative;
 }
 
-.sm-rounded-container {
+.sm-img-rounded-container {
     border-radius: 50%;
     width: 50px;
     height: 50px;
+}
+
+.sm-img-container {
+    width: 15px;
+    height: 15px;
 }
 
 img {
@@ -67,6 +81,8 @@ img {
 }
 
 .dining-hall-select {
+    margin-top: 15px;
+    padding-top: 10px;
     width: 30%;
     height: 50%;
 }
@@ -86,7 +102,8 @@ img {
     text-decoration: none;
     width: 100%;
     font-size: x-large;
-    border: 2px solid lightgrey;
+    border-top: 2px solid lightgrey;
+    border-bottom: 2px solid lightgrey;
     padding-top: 15px;
     padding-bottom: 15px;
 }
