@@ -1,0 +1,19 @@
+
+
+.login-bar {
+
+    position: absolute;
+    top: 500px;
+
+    width: 100px;
+    left: 42%;
+    font-size: 30px;
+
+}
+.login-signup{
+    position: absolute;
+    top: 90%;
+    width: 100px;
+    left: 80%;
+    font-size: 30px;
+}
