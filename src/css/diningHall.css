@@ -17,3 +17,24 @@
     align-items: center;
     text-shadow: 5px 5px 5px black, 0px 0px 2px black;
 }
+
+.review-create-button {
+    width: auto;
+    height: auto;
+    border: 1px solid lightgrey;
+    border-radius: 1em;
+    background-color: wheat;
+    text-align: center;
+    padding: 10px;
+    margin: 4px 2px;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    bottom: 30px;
+}
+
+.review-create-button:hover {
+    background-color: white;
+    color: wheat;
+}
+
