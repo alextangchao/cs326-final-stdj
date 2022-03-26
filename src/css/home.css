@@ -27,6 +27,7 @@ a {
 }
 
 .large-frame-container {
+    background-color: #fff7ed;
     width: 1080px;
     display: flex;
     flex-direction: column;
@@ -38,11 +39,13 @@ a {
 .flex-row-container {
     display: flex;
     flex-direction: row;
+    height: auto;
 }
 
 .flex-column-container {
     display: flex;
     flex-direction: column;
+    height: auto;
 }
 
 .review-container {
@@ -54,7 +57,7 @@ a {
 }
 
 .review {
-    background-color: whitesmoke;
+    background-color: #fafaf9;
     margin-top: 30px;
     display: flex;
     flex-direction: row;
