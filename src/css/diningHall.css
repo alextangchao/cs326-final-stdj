@@ -9,13 +9,53 @@
     overflow: hidden;
 }
 
+.title-content {
+    /* color: wheat;
+    font-size: 70px; */
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    /* z-index: 15; */
+    /* top: 50%;
+    left: 50%; */
+    /* margin: -120px 0 0 -150px; */
+    /* text-shadow: 5px 5px 5px black, 0px 0px 2px black; */
+}
+
 .title-text {
-    color: wheat;
-    font-size: 50px;
+    color: white;
+    font-size: 70px;
     position: absolute;
     /* top: 35%;
     left: 45%; */
     justify-content: center;
     align-items: center;
+    margin-top: -10px;
     text-shadow: 5px 5px 5px black, 0px 0px 2px black;
+}
+
+.diningHall-title-text {
+    margin-top: -80px;
+}
+
+.review-create-button {
+    font-size: 20px;
+    width: auto;
+    height: auto;
+    border: 1px solid lightgrey;
+    border-radius: 1em;
+    background-color: wheat;
+    text-align: center;
+    padding: 10px;
+    margin: 10px 2px;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    bottom: 20px;
+}
+
+.review-create-button:hover {
+    background-color: white;
+    color: wheat;
 }
