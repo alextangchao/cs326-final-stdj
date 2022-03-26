@@ -9,16 +9,36 @@
     overflow: hidden;
 }
 
-.title-text {
-    color: wheat;
-    font-size: 50px;
+.title-content {
+    /* color: wheat;
+    font-size: 70px; */
+    display: flex;
     position: absolute;
     justify-content: center;
     align-items: center;
+    /* z-index: 15; */
+    /* top: 50%;
+    left: 50%; */
+    /* margin: -120px 0 0 -150px; */
+    /* text-shadow: 5px 5px 5px black, 0px 0px 2px black; */
+}
+
+.title-text {
+    color: white;
+    font-size: 70px;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    margin-top: -10px;
     text-shadow: 5px 5px 5px black, 0px 0px 2px black;
 }
 
+.diningHall-title-text {
+    margin-top: -80px;
+}
+
 .review-create-button {
+    font-size: 20px;
     width: auto;
     height: auto;
     border: 1px solid lightgrey;
@@ -26,15 +46,14 @@
     background-color: wheat;
     text-align: center;
     padding: 10px;
-    margin: 4px 2px;
+    margin: 10px 2px;
     position: absolute;
     justify-content: center;
     align-items: center;
-    bottom: 30px;
+    bottom: 20px;
 }
 
 .review-create-button:hover {
     background-color: white;
     color: wheat;
 }
-

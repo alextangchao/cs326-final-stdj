@@ -1,15 +1,15 @@
-
-
 .login-bar {
-
-    position: absolute;
+    /* position: absolute;
     top: 60%;
     width: 100px;
-    left: 42%;
+    left: 42%; */
     font-size: 30px;
-
+    text-align: center;
+    /* justify-content: center;
+    align-items: center; */
 }
-.login-signup{
+
+.login-signup {
     position: absolute;
     top: 90%;
     width: 100px;
