@@ -1,9 +1,13 @@
-# Team Name: 27-yyds
+# Team Name
+27-yyds
 
 # Data Interactions
 User can post review for one of the four dining hall.
+
 User can also view all the reviews posted from other users.
+
 User need to login before posting review, but user can view all reviews without login.
+
 For each review, user can:
 - Tag one dining common
 - Score the food
