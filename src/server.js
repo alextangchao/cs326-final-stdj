@@ -4,7 +4,7 @@ import { readFile, writeFile } from 'fs/promises';
 import { faker } from '@faker-js/faker';
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -22,6 +22,10 @@ const fake_review = {
     review_img_id: faker.datatype.uuid(),
     created_date: faker.date.past()
 }
+
+app.get('/', async (request, response) => {
+    response.send('Hello World!');
+})
 
 // USERS
 app.put('/user/update', async (request, response) => {
