@@ -66,7 +66,7 @@ app.get('/image/:image_id', async function (req, response) {
     response.sendFile(__dirname + FILE_PATH);
 });
 
-app.delete('/image/delete/:image_id', async function (req, response) {
+app.delete('/image/delete', async function (req, response) {
     response.status(200).json(fake_image_id);
 });
 
