@@ -28,8 +28,8 @@ function review_create_html(index, review_object){
 
     <div class="flex-row-container">
       <p class="review-rating">Rating:</p>` 
-      + review_star_create(review_object.rate) 
-      + `<p class="review-number left-margin">${review_object.created_date}</p>
+      + review_star_create(review_object.rating) 
+      + `<p class="review-number left-margin">${review_object.created_date.slice(0, 10)}</p>
     </div>
 
     <div class="review-body-container">
