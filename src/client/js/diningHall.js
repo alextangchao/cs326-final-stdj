@@ -1,9 +1,17 @@
+import { getReviewsByLocation } from "./review_crud.js";
+
+const review_container = document.getElementById("review-container");
+const review_list = await getReviewsByLocation('hampshire');
+
+reviewsRender(review_list, review_container)
+
 function reviewsRender(review_list, review_container){ 
     for (let i = 0; i < review_list.length; i++) {
         const curReviewObject = review_list[i];
-        const div = document.createElement('review');
-        div.innerHTML = review_create_html(i);
-        review_container.appendChind(div);
+        const div = document.createElement('div');
+        div.classList.add("review");
+        div.innerHTML = review_create_html(i, curReviewObject);
+        review_container.appendChild(div);
     }
 }
 
@@ -16,7 +24,7 @@ function review_create_html(index, review_object){
 
   <div class="flex-column-container">
     <a id="username" class="review-title">${review_object.user_name}</a>
-    <a id="review-number" class="review-number">${review_object.user_name}</a>
+    <a id="review-number" class="review-number">${review_object.review_num} Review</a>
 
     <div class="flex-row-container">
       <p class="review-rating">Rating:</p>` 
