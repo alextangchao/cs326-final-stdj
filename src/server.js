@@ -8,6 +8,7 @@ import { dirname, join } from 'path';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
+const dining_hall = ['hampshire', 'franklin', 'berkshire', 'worcester']
 const app = express();
 const port = process.env.PORT || 3000;
 app.use(logger('dev'));
@@ -21,13 +22,41 @@ const fake_user = {
     pfp_id: faker.datatype.uuid()
 };
 
-const fake_review = {
+const fake_review_1 = {
     id: faker.datatype.uuid(),
     user_id: 0,
+    user_name: faker.name.findName(),
     review_text: faker.lorem.paragraph(),
+    review_num: faker.datatype.number(100),
     review_img_id: faker.datatype.uuid(),
-    created_date: faker.date.past()
-};
+    rating: faker.datatype.number( { min:1, max:5 } ),
+    created_date: faker.date.past(),
+    location:  faker.random.arrayElement(dining_hall)
+}
+
+const fake_review_2 = {
+    id: faker.datatype.uuid(),
+    user_id: 0,
+    user_name: faker.name.findName(),
+    review_text: faker.lorem.paragraph(),
+    review_num: faker.datatype.number(100),
+    review_img_id: faker.datatype.uuid(),
+    rating: faker.datatype.number( { min:1, max:5 } ),
+    created_date: faker.date.past(),
+    location:  faker.random.arrayElement(dining_hall)
+}
+
+const fake_review_3 = {
+    id: faker.datatype.uuid(),
+    user_id: 0,
+    user_name: faker.name.findName(),
+    review_text: faker.lorem.paragraph(),
+    review_num: faker.datatype.number(100),
+    review_img_id: faker.datatype.uuid(),
+    rating: faker.datatype.number( { min:1, max:5 } ),
+    created_date: faker.date.past(),
+    location:  faker.random.arrayElement(dining_hall)
+}
 
 const fake_image_id = {
     id: faker.datatype.uuid()
@@ -36,6 +65,10 @@ const fake_image_id = {
 const FILE_PATH = "/client/img/food.png";
 
 app.use('/', express.static('./src/client'));
+
+
+
+const fake_review_list = [fake_review_1, fake_review_2, fake_review_3]
 
 app.get('/', async (request, response) => {
     response.send('Hello World!');
@@ -51,12 +84,25 @@ app.delete('/user/delete', async (request, response) => {
 });
 
 // REVIEWS
+app.post('/review/create', async (request, response) => {
+    response.status(200).json(fake_review_1);
+});
+
+app.post('/review/id', async (request, response) => {
+    response.status(200).json(fake_review_1);
+});
+
+app.get('/review/location', async (request, response) => {
+    const options = request.query;
+    response.status(200).json(fake_review_list);
+});
+
 app.put('/review/update', async (request, response) => {
-    response.status(200).json(fake_review);
+    response.status(200).json(fake_review_1);
 });
 
 app.delete('/review/delete', async (request, response) => {
-    response.status(200).json(fake_review);
+    response.status(200).json(fake_review_1);
 });
 
 // IMAGE
