@@ -3,7 +3,7 @@ import logger from 'morgan';
 import { readFile, writeFile } from 'fs/promises';
 import { faker } from '@faker-js/faker';
 import { fileURLToPath } from 'url';
-import { dirname } from 'path';
+import { dirname, join } from 'path';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -13,7 +13,7 @@ const port = process.env.PORT || 3000;
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-// app.use(express.static('client'));
+app.use('/', express.static(join(__dirname, 'client')));
 
 const fake_user = {
     id: 0,
@@ -34,8 +34,6 @@ const fake_image_id = {
 };
 
 const FILE_PATH = "/client/img/food.png";
-
-app.use('/', express.static('./src/client'));
 
 app.get('/', async (request, response) => {
     response.send('Hello World!');
