@@ -4,6 +4,7 @@ import { readFile, writeFile } from 'fs/promises';
 import { faker } from '@faker-js/faker';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
+import exp from 'constants';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -34,6 +35,8 @@ const fake_image_id = {
 };
 
 const FILE_PATH = "/client/img/food.png";
+
+app.use('/', express.static('./src/client'));
 
 app.get('/', async (request, response) => {
     response.send('Hello World!');
