@@ -35,6 +35,8 @@ const fake_image_id = {
 
 const FILE_PATH = "/client/img/food.png";
 
+app.use('/', express.static('./src/client'));
+
 app.get('/', async (request, response) => {
     response.send('Hello World!');
 })
