@@ -73,9 +73,8 @@ app.post('/review/create', async (request, response) => {
 });
 
 app.get('/review/location', async (request, response) => {
-    console.log("here")
     const options = request.query;
-    response.stutas(200).json(fake_review_list);
+    response.status(200).json(fake_review_list);
 });
 
 app.put('/review/update', async (request, response) => {
