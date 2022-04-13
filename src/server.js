@@ -21,8 +21,9 @@ const fake_review_1 = {
     user_id: 0,
     user_name: faker.name.findName(),
     review_text: faker.lorem.paragraph(),
-    review_num: faker.random.number(100),
+    review_num: faker.datatype.number(100),
     review_img_id: faker.datatype.uuid(),
+    rate: faker.datatype.number(5),
     created_date: faker.date.past(),
     location:  faker.random.arrayElement(dining_hall)
 }
@@ -32,8 +33,9 @@ const fake_review_2 = {
     user_id: 0,
     user_name: faker.name.findName(),
     review_text: faker.lorem.paragraph(),
-    review_num: faker.random.number(100),
+    review_num: faker.datatype.number(100),
     review_img_id: faker.datatype.uuid(),
+    rate: faker.datatype.number(5),
     created_date: faker.date.past(),
     location:  faker.random.arrayElement(dining_hall)
 }
@@ -43,8 +45,9 @@ const fake_review_3 = {
     user_id: 0,
     user_name: faker.name.findName(),
     review_text: faker.lorem.paragraph(),
-    review_num: faker.random.number(100),
+    review_num: faker.datatype.number(100),
     review_img_id: faker.datatype.uuid(),
+    rate: faker.datatype.number(5),
     created_date: faker.date.past(),
     location:  faker.random.arrayElement(dining_hall)
 }
@@ -69,7 +72,9 @@ app.post('/review/create', async (request, response) => {
     response.status(200).json(fake_review_1);
 });
 
-app.post('/review/location', async (request, response) => {
+app.get('/review/location', async (request, response) => {
+    console.log("here")
+    const options = request.query;
     response.stutas(200).json(fake_review_list);
 });
 
