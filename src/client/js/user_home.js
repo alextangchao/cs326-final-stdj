@@ -37,6 +37,12 @@ function review_create_html(index, review_object){
         ${review_object.review_text}
       </p>
     </div>
+
+    <div class="review-edit flex-row-container">
+      <a>Edit</a>
+      <a> | </a>
+      <a>Delete</a>
+    </div>
   </div>
 
   <div class="review-pic">
