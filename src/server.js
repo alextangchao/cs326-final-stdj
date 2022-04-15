@@ -66,15 +66,12 @@ const fake_image_id = {
 
 const FILE_PATH = "/client/img/food.png";
 
-app.use('/', express.static('./src/client'));
-
-
 
 const fake_review_list = [fake_review_1, fake_review_2, fake_review_3]
 
-app.get('/', async (request, response) => {
-    response.send('Hello World!');
-})
+// app.get('/', async (request, response) => {
+//     response.send('Hello World!');
+// })
 
 // USERS
 app.put('/user/update', async (request, response) => {
