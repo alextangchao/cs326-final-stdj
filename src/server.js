@@ -2,6 +2,7 @@ import express, { response } from 'express';
 import logger from 'morgan';
 import { readFile, writeFile } from 'fs/promises';
 import { faker } from '@faker-js/faker';
+import cors from "cors";
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 
@@ -11,6 +12,7 @@ const __dirname = dirname(__filename);
 const dining_hall = ['hampshire', 'franklin', 'berkshire', 'worcester']
 const app = express();
 const port = process.env.PORT || 3000;
+app.use(cors());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -29,9 +31,9 @@ const fake_review_1 = {
     review_text: faker.lorem.paragraph(),
     review_num: faker.datatype.number(100),
     review_img_id: faker.datatype.uuid(),
-    rating: faker.datatype.number( { min:1, max:5 } ),
+    rating: faker.datatype.number({ min: 1, max: 5 }),
     created_date: faker.date.past(),
-    location:  faker.random.arrayElement(dining_hall)
+    location: faker.random.arrayElement(dining_hall)
 }
 
 const fake_review_2 = {
@@ -41,9 +43,9 @@ const fake_review_2 = {
     review_text: faker.lorem.paragraph(),
     review_num: faker.datatype.number(100),
     review_img_id: faker.datatype.uuid(),
-    rating: faker.datatype.number( { min:1, max:5 } ),
+    rating: faker.datatype.number({ min: 1, max: 5 }),
     created_date: faker.date.past(),
-    location:  faker.random.arrayElement(dining_hall)
+    location: faker.random.arrayElement(dining_hall)
 }
 
 const fake_review_3 = {
@@ -53,9 +55,9 @@ const fake_review_3 = {
     review_text: faker.lorem.paragraph(),
     review_num: faker.datatype.number(100),
     review_img_id: faker.datatype.uuid(),
-    rating: faker.datatype.number( { min:1, max:5 } ),
+    rating: faker.datatype.number({ min: 1, max: 5 }),
     created_date: faker.date.past(),
-    location:  faker.random.arrayElement(dining_hall)
+    location: faker.random.arrayElement(dining_hall)
 }
 
 const fake_image_id = {
