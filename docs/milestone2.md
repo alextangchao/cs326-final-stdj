@@ -25,12 +25,26 @@ CS326-27-yyds
 
 
 # Client Interface:
+This is where we GET the list of reviews for a specific dining halls and retrieve review imgs accordingly
+![Reviews](./img/faker-reviews.png)
+
+This is where we can POST a new review into the database
+![Review](./img/postReview.png)
+
+This is where we can PUT or DELETE a review
+![Review-edit-delete](./img/edit-delete-review.png)
+
+Here is the login page to send a POST request to verify the user credentials
+![Login](./img/login.png)
+
+Here is the signup page where we can send a POST request to add a new user
+![Signup](./img/signup.png)
 
 # Heroku Application:
 
 # Division of Labor:
 ### RuiLong Jiang
-user/update, delete, review/update, delete
+Init express server and serve static client files. Setup backend endpoint user/update, delete, review/update, delete with const faker_review and faker_user. Frontend crud js for sending the corresponding PUT/DELETE request.
 ### Chaolong Tang
 img/id, upload, delete
 ### Xuming Deng
