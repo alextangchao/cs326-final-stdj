@@ -1,5 +1,5 @@
 # Team Name
-CS326-27-yyds \
+CS326-27-yyds
 
 # API Endpoint & Description:
 
@@ -34,6 +34,9 @@ user/update, delete, review/update, delete
 ### Chaolong Tang
 img/id, upload, delete
 ### Xuming Deng
-review/location, create, get
+Assigned: review/location, create, get
+- Create end-points for review/location, review/create, review/id
+- Create Fake Reviews
+
 ### Hongwei Shu
 user/loign, register, get
