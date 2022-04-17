@@ -29,12 +29,18 @@
     position: absolute;
     justify-content: center;
     align-items: center;
-    margin-top: -10px;
+    margin-top: -80px;
     text-shadow: 5px 5px 5px black, 0px 0px 2px black;
 }
 
-.diningHall-title-text {
-    margin-top: -80px;
+/* Centered text */
+.centered {
+    font-size:70px;
+    font-weight: bold;
+    font-family:Copperplate;
+    color:white;
+    position: absolute;
+    align-items: center;
 }
 
 .review-create-button {
@@ -42,7 +48,7 @@
     width: auto;
     height: auto;
     border: 1px solid lightgrey;
-    border-radius: 1em;
+    border-radius: 0.5em;
     background-color: wheat;
     text-align: center;
     padding: 10px;
