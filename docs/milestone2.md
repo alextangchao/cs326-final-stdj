@@ -1,5 +1,5 @@
 # Team Name
-CS326-27-yyds \
+CS326-27-yyds
 
 # API Endpoint & Description:
 
@@ -44,7 +44,7 @@ Here is the signup page where we can send a POST request to add a new user
 
 # Division of Labor:
 ### RuiLong Jiang
-user/update, delete, review/update, delete
+Init express server and serve static client files. Setup backend endpoint user/update, delete, review/update, delete with const faker_review and faker_user. Frontend crud js for sending the corresponding PUT/DELETE request.
 ### Chaolong Tang
 img/id, upload, delete
 ### Xuming Deng
