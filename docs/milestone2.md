@@ -25,6 +25,20 @@ CS326-27-yyds \
 
 
 # Client Interface:
+This is where we GET the list of reviews for a specific dining halls and retrieve review imgs accordingly
+![Reviews](./img/faker-reviews.png)
+
+This is where we can POST a new review into the database
+![Review](./img/postReview.png)
+
+This is where we can PUT or DELETE a review
+![Review-edit-delete](./img/edit-delete-review.png)
+
+Here is the login page to send a POST request to verify the user credentials
+![Login](./img/login.png)
+
+Here is the signup page where we can send a POST request to add a new user
+![Signup](./img/signup.png)
 
 # Heroku Application:
 
