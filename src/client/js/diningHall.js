@@ -19,7 +19,7 @@ function review_create_html(index, review_object){
     
     const image = ''; // TODO
     return `<div class="sm-img-rounded-container">
-    <img src="./img/duck.jpeg">
+    <img class="selectDisable" src="./img/duck.jpeg">
   </div>
 
   <div class="review-flex-column-container">
@@ -43,8 +43,8 @@ function review_create_html(index, review_object){
     </div>
   </div>
 
-  <div class="review-pic">
-    <img src="./img/food.png">
+  <div class="review-pic selectDisable">
+    <img class="selectDisable" src="./img/food.png">
   </div>`
 }
 

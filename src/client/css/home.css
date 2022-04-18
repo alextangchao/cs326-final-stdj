@@ -66,6 +66,7 @@ a {
     width: 50px;
     height: 50px;
     box-sizing: content-box;
+    user-select: none;
 }
 
 .sm-img-rounded-container > img {
@@ -124,4 +125,20 @@ a {
 
 .left-margin {
     margin-left: 5px;
+}
+
+.selectDisable {
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+.selectEnable { 
+    -webkit-user-select: text;
+    -khtml-user-select: text;
+    -moz-user-select: text;
+    -o-user-select: text;
+    user-select: text;
 }
