@@ -19,17 +19,21 @@ function review_create_html(index, review_object){
     
     const image = ''; // TODO
     return `<div class="sm-img-rounded-container">
-    <img src="./img/duck.jpeg">
+    <img class="selectDisable" src="./img/duck.jpeg">
   </div>
 
-  <div class="flex-column-container">
+  <div class="review-flex-column-container">
     <a id="username" class="review-title">${review_object.user_name}</a>
     <a id="review-number" class="review-number">${review_object.review_num} Review</a>
 
-    <div class="flex-row-container">
+    <div class="review-flex-row-container">
       <p class="review-rating">Rating:</p>` 
       + review_star_create(review_object.rating) 
       + `<p class="review-number left-margin">${review_object.created_date.slice(0, 10)}</p>
+    </div>
+
+    <div class="review-flex-row-container">
+      <p class="review-rating">Location: ${review_object.location}</p>
     </div>
 
     <div class="review-body-container">
@@ -39,8 +43,8 @@ function review_create_html(index, review_object){
     </div>
   </div>
 
-  <div class="review-pic">
-    <img src="./img/food.png">
+  <div class="review-pic selectDisable">
+    <img class="selectDisable" src="./img/food.png">
   </div>`
 }
 

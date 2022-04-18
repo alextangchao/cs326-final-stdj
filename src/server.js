@@ -9,7 +9,7 @@ import { dirname, join } from 'path';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const dining_hall = ['hampshire', 'franklin', 'berkshire', 'worcester']
+const dining_hall = ['Hampshire', 'Franklin', 'Berkshire', 'Worcester']
 const app = express();
 const port = process.env.PORT || 3000;
 app.use(cors());

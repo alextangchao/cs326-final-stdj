@@ -48,6 +48,14 @@ Init express server and serve static client files. Setup backend endpoint user/u
 ### Chaolong Tang
 img/id, upload, delete
 ### Xuming Deng
-review/location, create, get
+Assigned: review/location, create, get
+- Created end-points for review/location, review/create, review/id
+- Created Fake Reviews
+- Created Dining Hall Page for (Hampshire, Berkshire, Franklin, Worcester)
+- Implemented DiningHall.js
+    - Fetching all the reviews from the server (For specific dining hall)
+    - Generating review and render on each dining hall page
+- Update CSS files and HTML for review component.
+
 ### Hongwei Shu
 user/loign, register, get

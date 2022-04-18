@@ -48,23 +48,6 @@ a {
     height: auto;
 }
 
-.review-container {
-    width: 100%;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    margin-left: 40px;
-}
-
-.review {
-    background-color: #fafaf9;
-    margin-top: 30px;
-    display: flex;
-    flex-direction: row;
-    height: 270px;
-    border-top: 2px solid lightgrey;
-    border-bottom: 2px solid lightgrey;
-}
 
 .img-container {
     margin: 0;
@@ -80,9 +63,10 @@ a {
 
 .sm-img-rounded-container {
     border-radius: 50%;
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
     box-sizing: content-box;
+    user-select: none;
 }
 
 .sm-img-rounded-container > img {
@@ -124,23 +108,8 @@ a {
 
 .review > .sm-img-rounded-container {
     margin-left: 20px; 
-    margin-top: 20px;
+    margin-top: 25px;
     margin-right: 5px;
-}
-
-.review > .flex-column-container {
-    width: 60%; 
-    padding-left:10px; 
-    padding-top: 30px; 
-    justify-content: flex-start;
-    box-sizing: content-box;
-}
-
-.review > .flex-column-container > .flex-row-container {
-    padding-top: 5px; 
-    height:20px; 
-    width: 40%;
-    margin-bottom: 10px;
 }
 
 .review-pic {
@@ -153,13 +122,23 @@ a {
     object-fit: contain;
 }
 
-.review-body-container {
-    width: 100%; 
-    padding-top: 5px; 
-    overflow-wrap: break-word;
-    padding-right: 10px;
-}
 
 .left-margin {
     margin-left: 5px;
+}
+
+.selectDisable {
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+.selectEnable { 
+    -webkit-user-select: text;
+    -khtml-user-select: text;
+    -moz-user-select: text;
+    -o-user-select: text;
+    user-select: text;
 }
