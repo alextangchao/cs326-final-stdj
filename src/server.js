@@ -9,7 +9,7 @@ import { dirname, join } from 'path';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const dining_hall = ['Hampshire', 'Franklin', 'Berkshire', 'Worcester']
+const dining_hall = ['hampshire', 'franklin', 'berkshire', 'worcester']
 const app = express();
 const port = process.env.PORT || 3000;
 app.use(cors());
@@ -21,7 +21,8 @@ app.use('/', express.static(join(__dirname, 'client')));
 const fake_user = {
     id: 0,
     name: faker.name.findName(),
-    pfp_id: faker.datatype.uuid()
+    pfp_id: faker.datatype.uuid(),
+    password: faker.animal.type()
 };
 
 const fake_review_1 = {
@@ -79,6 +80,18 @@ app.put('/user/update', async (request, response) => {
 });
 
 app.delete('/user/delete', async (request, response) => {
+    response.status(200).json(fake_user);
+});
+
+app.get('/user/id', async (request, response) => {
+    response.status(200).json(fake_user.id);
+});
+
+app.post('/user/login', async (request, response) => {
+    response.status(200).json(fake_user);
+});
+
+app.post('/user/register', async (request, response) => {
     response.status(200).json(fake_user);
 });
 

@@ -21,3 +21,38 @@ export async function deleteUser(user) {
   const data = await response.json();
   return data;
 }
+
+//user login
+export async function loginUser(user) {
+  const response = await fetch(`/user/login`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(user),
+  });
+  const data = await response.json();
+  return data;
+}
+
+//register
+export async function registerUser(user) {
+  const response = await fetch(`/user/register`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(user),
+  });
+  const data = await response.json();
+  return data;
+}
+
+//get user
+export async function getUser(id) {
+  const response = await fetch(`/user/id`, {
+    method: 'GET',
+  });
+  const data = await response.json();
+  return data;
+}
