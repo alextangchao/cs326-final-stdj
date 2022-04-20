@@ -19,7 +19,7 @@ CS326-27-yyds
 
 
 ## Image API
-/img?id= - which allow client to get the image from server by id \
+/img/:id - which allow client to get the image from server by id \
 /img/upload - which allow client to upload the image \
 /img/delete - which allow client to delete the image 
 
@@ -40,13 +40,19 @@ Here is the login page to send a POST request to verify the user credentials
 Here is the signup page where we can send a POST request to add a new user
 ![Signup](./img/signup.png)
 
-# Heroku Application:
+# Heroku Application URL:
+https://cs326-food-and-umass.herokuapp.com
 
 # Division of Labor:
 ### RuiLong Jiang
 Init express server and serve static client files. Setup backend endpoint user/update, delete, review/update, delete with const faker_review and faker_user. Frontend crud js for sending the corresponding PUT/DELETE request.
 ### Chaolong Tang
-img/id, upload, delete
+- Created backend API end-points for the image parts, including get image by id, upload image and delete image by id.
+- Config backend CORS setting.
+- Create frontend js function on fetching image, including upload, get, and delete image.
+- Create user's home page for showing all the reviews post by this user. Also support user to edit and delete its reviews.
+- Create Edit Review Page for user to edit its review.
+- Deploy project on Heroku.
 ### Xuming Deng
 Assigned: review/location, create, get
 - Created end-points for review/location, review/create, review/id
