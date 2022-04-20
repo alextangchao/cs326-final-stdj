@@ -1,4 +1,4 @@
-import { createReview } from "./review_crud.js";
+import { updateReview } from "./review_crud.js";
 import { uploadImage } from "./image.js";
 
 const ls = window.localStorage;
@@ -27,14 +27,14 @@ async function process_img() {
 
 async function post_review() {
     const review = gather_review_info();
-    const resp = await createReview(review);
+    const resp = await updateReview(review);
     if (resp === null) {
-        alert("Failed to post review! Please Try Again");
+        alert("Failed to change review! Please Try Again");
     }
     else {
-        window.location.href = `${review.location}.html`;
+        window.location.href = "user-home.html";
     }
 }
 
 document.getElementById("img").addEventListener("change", process_img);
-document.getElementById("post").addEventListener("click", post_review);
+document.getElementById("submit").addEventListener("click", post_review);
