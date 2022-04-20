@@ -1,3 +1,4 @@
+import { getUserReviews } from "./user_crud.js";
 import { getReviewsByLocation, deleteReview } from "./review_crud.js";
 import { getImage } from "./image.js";
 
@@ -6,7 +7,7 @@ await reviewsRender();
 async function reviewsRender() {
   const review_container = document.getElementById("review-container");
   review_container.innerHTML = "";
-  const review_list = await getReviewsByLocation('hampshire');
+  const review_list = await getUserReviews("userId");
   for (let i = 0; i < review_list.length; i++) {
     const curReviewObject = review_list[i];
     const div = document.createElement('div');
