@@ -9,8 +9,13 @@ export async function updateReview(review) {
     },
     body: JSON.stringify(review),
   });
-  const data = await response.json();
-  return data;
+
+  if (!response.ok) { 
+    return null;
+  } else {
+    const data = await response.json();
+    return data;
+  }
 }
 
 export async function deleteReview(review) {
@@ -21,8 +26,13 @@ export async function deleteReview(review) {
     },
     body: JSON.stringify(review),
   });
-  const data = await response.json();
-  return data;
+
+  if (!response.ok) { 
+    return null;
+  } else {
+    const data = await response.json();
+    return data;
+  }
 }
 
 export async function createReview(review) {
@@ -33,22 +43,37 @@ export async function createReview(review) {
     },
     body: JSON.stringify(review),
   });
-  const data = await response.json();
-  return data;
+  
+  if (!response.ok) { 
+    return null;
+  } else {
+    const data = await response.json();
+    return data;
+  }
 }
 
 export async function readReview(review_id) {
   const response = await fetch(config.URL_PREFIX + `/review?id=${review_id}`, {
     method: 'GET'
   });
-  const data = await response.json();
-  return data;
+  
+  if (!response.ok) { 
+    return null;
+  } else {
+    const data = await response.json();
+    return data;
+  }
 }
 
 export async function getReviewsByLocation(review_location) {
   const response = await fetch(config.URL_PREFIX + `/review/location?name=${review_location}`, {
     method: 'GET',
   });
-  const data = await response.json();
-  return data;
+  
+  if (!response.ok) { 
+    return null;
+  } else {
+    const data = await response.json();
+    return data;
+  }
 }

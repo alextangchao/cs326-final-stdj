@@ -46,7 +46,10 @@ https://cs326-food-and-umass.herokuapp.com
 
 # Division of Labor:
 ### RuiLong Jiang
-Init express server and serve static client files. Setup backend endpoint user/update, delete, review/update, delete with const faker_review and faker_user. Frontend crud js for sending the corresponding PUT/DELETE request.
+- Init express server and serve static client files. 
+- Setup backend endpoint user/update, delete, review/update, delete with const faker_review and faker_user. 
+- Frontend crud js for sending the corresponding PUT/DELETE request. 
+- Post review page's frontend js for review form submission with image. 
 ### Chaolong Tang
 - Created backend API end-points for the image parts, including get image by id, upload image and delete image by id.
 - Config backend CORS setting.
