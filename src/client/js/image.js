@@ -29,7 +29,7 @@ export async function uploadImage(image) {
  * @returns {string} succeed: image url in the browser | failed: null
  */
 export async function getImage(id) {
-    const response = await fetch(config.URL_PREFIX + "/image/" + id, {
+    const response = await fetch(config.URL_PREFIX + "/image?id=" + id, {
         method: 'GET',
     })
     if (response.ok) {

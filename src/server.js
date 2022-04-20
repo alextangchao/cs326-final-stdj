@@ -122,7 +122,7 @@ app.post('/image/create', async function (req, response) {
     response.status(200).json(fake_image_id);
 });
 
-app.get('/image/:image_id', async function (req, response) {
+app.get('/image', async function (req, response) {
     response.sendFile(__dirname + FILE_PATH);
 });
 

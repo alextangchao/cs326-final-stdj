@@ -19,9 +19,9 @@ CS326-27-yyds
 
 
 ## Image API
-/img/:id - which allow client to get the image from server by id \
-/img/upload - which allow client to upload the image \
-/img/delete - which allow client to delete the image 
+/image?id= - which allow client to get the image from server by id \
+/image/create - which allow client to upload the image \
+/image/delete - which allow client to delete the image 
 
 
 # Client Interface:
