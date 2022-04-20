@@ -56,3 +56,11 @@ export async function getUser(id) {
   const data = await response.json();
   return data;
 }
+
+export async function getUserReviews(id) {
+  const response = await fetch(`/user/reviews?id=${id}`, {
+    method: 'GET',
+  });
+  const data = await response.json();
+  return data;
+}

@@ -87,6 +87,12 @@ app.get('/user/id', async (request, response) => {
     response.status(200).json(fake_user.id);
 });
 
+// return all the reviews post by this user
+app.get('/user/reviews', async (request, response) => {
+    const options = request.query;
+    response.status(200).json(fake_review_list);
+});
+
 app.post('/user/login', async (request, response) => {
     response.status(200).json(fake_user);
 });
@@ -122,7 +128,7 @@ app.post('/image/create', async function (req, response) {
     response.status(200).json(fake_image_id);
 });
 
-app.get('/image/:image_id', async function (req, response) {
+app.get('/image', async function (req, response) {
     response.sendFile(__dirname + FILE_PATH);
 });
 
