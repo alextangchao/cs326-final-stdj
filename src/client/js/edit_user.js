@@ -1,1 +1,1 @@
-import { updateUser, deleteUser } from "./user_crud.js";
+import { updateUser } from "./user_crud.js";

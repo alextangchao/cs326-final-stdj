@@ -1,6 +1,7 @@
 import { getUserReviews } from "./user_crud.js";
 import { getReviewsByLocation, deleteReview } from "./review_crud.js";
 import { getImage } from "./image.js";
+import { deleteUser } from "./user_crud.js";
 
 await reviewsRender();
 
@@ -73,3 +74,5 @@ function review_star_create(num) {
   }
   return result;
 }
+
+// TO DO document.addEventListener("delete-user", )
