@@ -25,6 +25,10 @@ label{
 
 .submit-button {
     margin: auto;
-    width: 50px;
-    
+    width: 50px; 
+}
+
+.submit-button-width {
+    margin: auto;
+    width: 60px; 
 }
