@@ -34,7 +34,7 @@ export async function getImage(id) {
     })
     if (response.ok) {
         const data = await response.blob();
-        const imageURL = URL.createObjectURL(imageBlob);
+        const imageURL = URL.createObjectURL(data);
         return imageURL;
     }
     return null;
