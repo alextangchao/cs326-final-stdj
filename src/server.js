@@ -87,6 +87,12 @@ app.get('/user/id', async (request, response) => {
     response.status(200).json(fake_user.id);
 });
 
+// return all the reviews post by this user
+app.get('/user/reviews', async (request, response) => {
+    const options = request.query;
+    response.status(200).json(fake_review_list);
+});
+
 app.post('/user/login', async (request, response) => {
     response.status(200).json(fake_user);
 });

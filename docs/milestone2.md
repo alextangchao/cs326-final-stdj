@@ -6,7 +6,8 @@ CS326-27-yyds
 ## User API
 /user/login - which allow users to login \
 /user/register - which allow users to register \
-/user?id= - a view endpoint which return the user uuid \
+/user?id= - a view endpoint which return the user's information by uuid \
+/user/reviews?id - which return all the reviews post by a user by user uuid \
 /user/update - which allow users to update personal information such as pfp, name, password \
 /user/delete - which allow users to delete their account and reviews accordingly
 
