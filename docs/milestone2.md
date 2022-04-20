@@ -59,7 +59,7 @@ https://cs326-food-and-umass.herokuapp.com
 - Config backend CORS setting.
 - Create frontend js function on fetching image, including upload, get, and delete image.
 - Create user's home page for showing all the reviews post by this user. Also support user to edit and delete its reviews.
-- Create Edit Review Page for user to edit its review.
+- Create Edit Review Page (html and js) for user to edit its review.
 - Deploy project on Heroku.
 ### Xuming Deng
 Assigned: review/location, create, get

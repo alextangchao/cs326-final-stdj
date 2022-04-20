@@ -1,4 +1,4 @@
-import { getUserReviews } from "./user_crud.js";
+import { getUser, getUserReviews } from "./user_crud.js";
 import { getReviewsByLocation, deleteReview } from "./review_crud.js";
 import { getImage } from "./image.js";
 import { deleteUser } from "./user_crud.js";
@@ -74,5 +74,7 @@ function review_star_create(num) {
   }
   return result;
 }
+
+document.getElementById("user-name").innerText = (await getUser("id")).name;
 
 // TO DO document.addEventListener("delete-user", )

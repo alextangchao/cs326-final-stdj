@@ -83,8 +83,8 @@ app.delete('/user/delete', async (request, response) => {
     response.status(200).json(fake_user);
 });
 
-app.get('/user/id', async (request, response) => {
-    response.status(200).json(fake_user.id);
+app.get('/user', async (request, response) => {
+    response.status(200).json(fake_user);
 });
 
 // return all the reviews post by this user
@@ -106,7 +106,7 @@ app.post('/review/create', async (request, response) => {
     response.status(200).json(fake_review_1);
 });
 
-app.post('/review/id', async (request, response) => {
+app.post('/review', async (request, response) => {
     response.status(200).json(fake_review_1);
 });
 

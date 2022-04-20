@@ -50,7 +50,7 @@ export async function registerUser(user) {
 
 //get user
 export async function getUser(id) {
-  const response = await fetch(`/user/id`, {
+  const response = await fetch(`/user?id=${id}`, {
     method: 'GET',
   });
   const data = await response.json();
