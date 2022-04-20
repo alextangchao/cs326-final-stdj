@@ -18,3 +18,14 @@
   text-align: center;
   margin-left: 20px;
 }
+
+.button-to-link{
+  background: none;
+  border: none;
+  color: red
+}
+
+.button-to-link:hover{
+  background: none;
+  text-decoration: underline;
+}
