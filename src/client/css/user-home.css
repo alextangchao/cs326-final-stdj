@@ -29,3 +29,8 @@
   background: none;
   text-decoration: underline;
 }
+
+.edit-user-button {
+  margin-left: 1em;
+  margin-right: 1em;
+}

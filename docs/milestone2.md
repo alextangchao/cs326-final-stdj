@@ -41,6 +41,9 @@ Here is the login page to send a POST request to verify the user credentials
 Here is the signup page where we can send a POST request to add a new user
 ![Signup](./img/signup.png)
 
+Here is the edit user page where user will be able to make changes to their account
+![Edit-user](./img/edit-user.png)
+
 # Heroku Application URL:
 https://cs326-food-and-umass.herokuapp.com
 
@@ -50,6 +53,7 @@ https://cs326-food-and-umass.herokuapp.com
 - Setup backend endpoint user/update, delete, review/update, delete with const faker_review and faker_user. 
 - Frontend crud js for sending the corresponding PUT/DELETE request. 
 - Post review page's frontend js for review form submission with image. 
+- Add edit-user.html for user to make changes to account details.
 ### Chaolong Tang
 - Created backend API end-points for the image parts, including get image by id, upload image and delete image by id.
 - Config backend CORS setting.

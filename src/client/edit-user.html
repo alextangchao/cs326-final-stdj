@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="css/diningHall.css" />
   <link rel="stylesheet" href="css/user-home.css" />
   <link rel="stylesheet" href="css/review.css" />
+  <link rel="stylesheet" href="css/login.css" />
 </head>
 
 <body>
@@ -30,34 +31,32 @@
   </ul>
   </div>
 
-  <!-- <div class="has-bg-img title-container">
-    <img class="bg-img" src="https://www.shawmut.com/assets/images/back_end/portfolio/1_1424290735_Umass-5">
-    <div class="title-content">
-      <h1 class="centered title-text diningHall-title-text">Hampshire <br> Dining Hall</h1>
-      <a class="review-create-button" href="post-review.html">
-        Post a Review
-      </a>
-    </div>
-  </div> -->
   <div class="flex-row-container user-title-background">
     <div class="user-title-container">
       <div class="sm-img-rounded-container selectDisable">
         <img src="./img/duck.jpeg">
       </div>
       <div class="user-info-item review-title">User Name</div>
-      <a class="button-to-link edit-user-button" id="edit-user" href="edit-user.html">Edit</a> |  
-      <a class="button-to-link edit-user-button" id="delete-user">Delete</a>
     </div>
   </div>
+  <br><br>
 
-  <div class="large-frame-container">
-    <div class="flex-row-container">
+  <!--  input username, password, and login button   -->
+  <form action= "/user/register" method="post" class="login-bar">
+    <label for="Username">Username:</label>
+    <input type="text" id="Username" />
+    <br><br>
+    <label for="Password">Password:</label>
+    <input type="text" id="Password" />
+    <br><br>
+    <label for="ConfirmPassword">Confirm Password:</label>
+    <input type="text" id="ConfirmPassword" />
+    <!-- profile submit       -->
+    <br/><br/>
+    <input type="file" id="imagefile" /> <br/><br/>
+    <input type="submit" value="submit" />
+  </form>
 
-      <div id="review-container" class="review-container">
-
-      </div>
-    </div>
-  </div>
 </body>
 
 </html>
