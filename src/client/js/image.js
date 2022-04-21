@@ -8,7 +8,7 @@ import { config } from "./config.js"
 export async function uploadImage(image) {
     const formData = new FormData();
     formData.append('image', image);
-    const response = await fetch(config.URL_PREFIX + "/image/create", {
+    const response = await fetch("/image/create", {
         method: 'POST',
         headers: {
             'Content-Type': 'multipart/form-data',
@@ -29,7 +29,7 @@ export async function uploadImage(image) {
  * @returns {string} succeed: image url in the browser | failed: null
  */
 export async function getImage(id) {
-    const response = await fetch(config.URL_PREFIX + "/image?id=" + id, {
+    const response = await fetch("/image?id=" + id, {
         method: 'GET',
     })
     if (response.ok) {
@@ -46,7 +46,7 @@ export async function getImage(id) {
  * @returns {string} succeed: image id which deleted | failed: null
  */
 export async function deleteImage(id) {
-    const response = await fetch(config.URL_PREFIX + "/image/delete", {
+    const response = await fetch("/image/delete", {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json',
