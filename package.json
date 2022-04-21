@@ -13,6 +13,7 @@
   "dependencies": {
     "@faker-js/faker": "^6.1.2",
     "cors": "^2.8.5",
+    "dependency": "^0.0.1",
     "express": "^4.17.3",
     "morgan": "^1.10.0"
   }

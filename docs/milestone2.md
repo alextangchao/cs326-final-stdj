@@ -72,4 +72,7 @@ Assigned: review/location, create, get
 - Update CSS files and HTML for review component.
 
 ### Hongwei Shu
-user/loign, register, get
+- Created end-points for user/loign, user/register, user/get
+- Created edit_user.js for update user profile
+- Created loginsing_user.js for login and register
+- Updated user profile edit (HTML) and delete(request in js)

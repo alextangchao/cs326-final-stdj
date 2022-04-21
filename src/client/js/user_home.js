@@ -77,4 +77,4 @@ function review_star_create(num) {
 
 document.getElementById("user-name").innerText = (await getUser("id")).name;
 
-// TO DO document.addEventListener("delete-user", )
+document.getElementById("delete-user").addEventListener("click", deleteUser((await getUser("id")).name))
