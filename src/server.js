@@ -7,6 +7,7 @@ import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 import passport from 'passport';
 import { auth_setup } from './auth.js';
+import { addUserToDB } from './database.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -104,7 +105,15 @@ app.post('/user/login', passport.authenticate('local', {
 }));
 
 app.post('/user/register', async (request, response) => {
-    response.status(200).json(fake_user);
+    const options = request.body;
+    if ('username' in options && 'password' in options) {
+        const user = { username: options.username, passowrd: options.password };
+        // to do handle images
+        await addUserToDB(user);
+        response.status(200).json(user);
+    } else {
+        response.status(400).json({ error: "Bad Requset: Missing params"});
+    }
 });
 
 // REVIEWS
