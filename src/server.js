@@ -1,11 +1,12 @@
 import 'dotenv/config';
 import express, { response } from 'express';
 import logger from 'morgan';
-import { readFile, writeFile } from 'fs/promises';
 import { faker } from '@faker-js/faker';
 import cors from "cors";
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
+import passport from 'passport';
+import auth_setup from 'auth.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -94,9 +95,13 @@ app.get('/user/reviews', async (request, response) => {
     response.status(200).json(fake_review_list);
 });
 
-app.post('/user/login', async (request, response) => {
-    response.status(200).json(fake_user);
-});
+// setup passport local strategy
+auth_setup();
+
+app.post('/user/login', passport.authenticate('local', {
+    successRedirect: '/index.html',
+    failureRedirect: '/login.html'
+}));
 
 app.post('/user/register', async (request, response) => {
     response.status(200).json(fake_user);

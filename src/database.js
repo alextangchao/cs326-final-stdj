@@ -6,7 +6,7 @@ const pwd = process.env['PWD'];
 
 async function main(){
     const uri = `mongodb+srv://${username}:${pwd}@cluster0.ycngz.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
- 
+
     const client = new MongoClient(uri);
  
     try {
