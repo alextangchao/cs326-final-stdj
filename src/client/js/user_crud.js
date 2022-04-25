@@ -31,8 +31,12 @@ export async function loginUser(user) {
     },
     body: JSON.stringify(user),
   });
-  const data = await response.json();
-  return data;
+
+  if (!response.ok) {
+    alert("Incorrect login credientials");
+  } else {
+    location.replace("/index.html");
+  }
 }
 
 //register
@@ -44,8 +48,10 @@ export async function registerUser(user) {
     },
     body: JSON.stringify(user),
   });
-  const data = await response.json();
-  return data;
+
+  if (response.ok) {
+    alert("Signup successful!");
+  }
 }
 
 //get user

@@ -12,11 +12,17 @@ const uri = `mongodb+srv://${username}:${pwd}@cluster0.ycngz.mongodb.net/myFirst
 
 import { faker } from '@faker-js/faker';
 const fake_user = {
-    id: 0,
-    name: faker.name.findName(),
-    pfp_id: faker.datatype.uuid(),
-    password: faker.animal.type()
+    username: faker.name.findName(),
+    password: "123456"
 };
+
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+
+passport.deserializeUser(function(user, done) {
+  done(null, user);
+});
 
 export function auth_setup() {
     passport.use(new LocalStrategy(function verify(username, password, cb) {
