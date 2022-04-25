@@ -10,6 +10,14 @@ const uri = `mongodb+srv://${username}:${pwd}@cluster0.ycngz.mongodb.net/myFirst
 
 // const client = new MongoClient(uri);
 
+import { faker } from '@faker-js/faker';
+const fake_user = {
+    id: 0,
+    name: faker.name.findName(),
+    pfp_id: faker.datatype.uuid(),
+    password: faker.animal.type()
+};
+
 export function auth_setup() {
     passport.use(new LocalStrategy(function verify(username, password, cb) {
     //   db.get('SELECT * FROM users WHERE username = ?', [ username ], function(err, row) {
@@ -24,5 +32,6 @@ export function auth_setup() {
     //       return cb(null, row);
     //     });
     //   });
+        return cb(null, fake_user);
     }));
 }

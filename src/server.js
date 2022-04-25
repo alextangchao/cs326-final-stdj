@@ -6,7 +6,7 @@ import cors from "cors";
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 import passport from 'passport';
-import auth_setup from 'auth.js';
+import { auth_setup } from './auth.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
