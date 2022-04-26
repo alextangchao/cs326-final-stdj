@@ -33,7 +33,6 @@ export function crypto_hash(password) {
 export async function addUserToDB(user) {
     try {
         await client.connect();
-        console.log(user.password);
         user.password = crypto_hash(String(user.password));
         await client.db("foodandumass").collection("user").insertOne(user);
     } catch (e) {
