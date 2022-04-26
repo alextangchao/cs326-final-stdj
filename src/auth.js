@@ -1,20 +1,14 @@
 import passport from 'passport';
 import LocalStrategy from 'passport-local';
-import crypto from 'crypto';
+import { MongoClient } from 'mongodb';
 import 'dotenv/config';
+import { crypto_hash } from './database.js';
 
 const username = process.env['DB_USERNAME'];
 const pwd = process.env['PWD']; 
 
 const uri = `mongodb+srv://${username}:${pwd}@cluster0.ycngz.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
-
-// const client = new MongoClient(uri);
-
-import { faker } from '@faker-js/faker';
-const fake_user = {
-    username: faker.name.findName(),
-    password: "123456"
-};
+const client = new MongoClient(uri);
 
 passport.serializeUser(function(user, done) {
   done(null, user);
@@ -24,20 +18,20 @@ passport.deserializeUser(function(user, done) {
   done(null, user);
 });
 
-export function auth_setup() {
-    passport.use(new LocalStrategy(function verify(username, password, cb) {
-    //   db.get('SELECT * FROM users WHERE username = ?', [ username ], function(err, row) {
-    //     if (err) { return cb(err); }
-    //     if (!row) { return cb(null, false, { message: 'Incorrect username or password.' }); }
-    
-    //     crypto.pbkdf2(password, row.salt, 310000, 32, 'sha256', function(err, hashedPassword) {
-    //       if (err) { return cb(err); }
-    //       if (!crypto.timingSafeEqual(row.hashed_password, hashedPassword)) {
-    //         return cb(null, false, { message: 'Incorrect username or password.' });
-    //       }
-    //       return cb(null, row);
-    //     });
-    //   });
-        return cb(null, fake_user);
-    }));
+export async function auth_setup() {
+    passport.use(new LocalStrategy(
+        async function verify(username, password, done) {
+            try {
+                await client.connect();
+                const user = { username: username, password: crypto_hash(password) };
+                const count = await client.db("foodandumass").collection("user").find(user).count();
+                if (count === 0) { return done(null, false, { message: 'Incorrect username or password.' }); }
+                return done(null, user);
+            } catch (e) {
+                return done(e);
+            } finally {
+                await client.close();
+            }
+        }
+    ));
 }

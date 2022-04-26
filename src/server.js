@@ -97,17 +97,16 @@ app.get('/user/reviews', async (request, response) => {
 });
 
 // setup passport local strategy
-auth_setup();
+await auth_setup();
 
 app.post('/user/login', passport.authenticate('local', {
-    successRedirect: '/index.html',
-    failureRedirect: '/login.html'
+    successRedirect: '/index.html'
 }));
 
 app.post('/user/register', async (request, response) => {
     const options = request.body;
     if ('username' in options && 'password' in options) {
-        const user = { username: options.username, passowrd: options.password };
+        const user = { username: options.username, password: options.password };
         // to do handle images
         await addUserToDB(user);
         response.status(200).json(user);

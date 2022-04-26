@@ -32,7 +32,7 @@ export async function loginUser(user) {
     body: JSON.stringify(user),
   });
 
-  if (!response.ok) {
+  if (response.status === 401) {
     alert("Incorrect login credientials");
   } else {
     location.replace("/index.html");
