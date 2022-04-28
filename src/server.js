@@ -7,6 +7,7 @@ import {fileURLToPath} from 'url';
 import {dirname, join} from 'path';
 import passport from 'passport';
 import multer from 'multer';
+import {GridFsStorage} from 'multer-gridfs-storage';
 import {auth_setup} from './auth.js';
 import {DB_CRUD} from './database.js';
 
@@ -25,7 +26,16 @@ await db_crud.connect(DB_URL, DB_NAME);
 const dining_hall = ['hampshire', 'franklin', 'berkshire', 'worcester']
 const app = express();
 const port = process.env.PORT || 3000;
-const upload = multer({limits: {fileSize: 1.6e7}});
+const storage = new GridFsStorage({
+    db: db_crud.db,
+    file: (req, file) => {
+        return {
+            bucketName: 'image',
+            filename: file.originalname
+        }
+    }
+});
+const upload = multer({storage});
 
 app.use(cors());
 app.use(logger('dev'));
@@ -148,15 +158,12 @@ app.delete('/review/delete', async (request, response) => {
 
 // IMAGE
 app.post('/image/create', upload.single('image'), async function (req, response) {
-    console.log("image create", req.file);
-    response.status(200).json({image: req.file});
-    // const image = req.body.image
-    // if (image === undefined || image === null) {
-    //     response.status(400).json({error: "Bad Requset: Missing params"});
-    // } else {
-    //     const id = await db_crud.addImage(image);
-    //     response.status(200).json({id: id});
-    // }
+    // console.log("image create", req.file);
+    if (req.file === undefined || req.file.id === undefined) {
+        response.status(400).json({error: "Bad Requset: Missing params"});
+    } else {
+        response.status(200).json({id: req.file.id});
+    }
 });
 
 app.get('/image', async function (req, response) {
@@ -164,13 +171,28 @@ app.get('/image', async function (req, response) {
     if (id === undefined || id === null) {
         response.status(400).json({error: "Bad Requset: Missing params"});
     } else {
-        const image = await db_crud.getImage(id);
-        response.status(200).json({id: id});
+        const image = await db_crud.checkImage(id);
+        if (image.length === 0) {
+            response.status(400).json({error: "Bad Requset: Image not exist"});
+        } else {
+            db_crud.getImage(id).pipe(response);
+        }
     }
 });
 
 app.delete('/image/delete', async function (req, response) {
-    response.status(200).json(fake_image_id);
+    const id = req.body.id;
+    if (id === undefined || id === null) {
+        response.status(400).json({error: "Bad Requset: Missing params"});
+    } else {
+        const image = await db_crud.checkImage(id);
+        if (image.length === 0) {
+            response.status(400).json({error: "Bad Requset: Image not exist"});
+        } else {
+            await db_crud.deleteImage(id);
+            response.status(200).json({id: id});
+        }
+    }
 });
 
 app.listen(port, () => {

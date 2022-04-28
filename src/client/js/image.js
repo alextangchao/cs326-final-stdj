@@ -1,5 +1,3 @@
-import { config } from "./config.js"
-
 /**
  * Upload the image
  * @param {file} image
@@ -17,8 +15,7 @@ export async function uploadImage(image) {
     })
     if (response.ok) {
         const data = await response.json();
-        const imageId = data.id;
-        return imageId;
+        return data.id;
     }
     return null;
 }
@@ -55,8 +52,7 @@ export async function deleteImage(id) {
     })
     if (response.ok) {
         const data = await response.json();
-        const imageId = data.id;
-        return imageId;
+        return data.id;
     }
     return null;
 }

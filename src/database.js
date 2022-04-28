@@ -1,10 +1,11 @@
-import {MongoClient, ServerApiVersion} from 'mongodb';
+import {MongoClient, ServerApiVersion, GridFSBucket, ObjectId} from 'mongodb';
 import 'dotenv/config';
 import crypto from 'crypto';
 
 
 export class DB_CRUD {
-    constructor() {}
+    constructor() {
+    }
 
     async connect(db_url, db_name) {
         try {
@@ -14,6 +15,7 @@ export class DB_CRUD {
                 serverApi: ServerApiVersion.v1
             });
             this.db = this.client.db(db_name);
+            this.gfs = new GridFSBucket(this.db, {bucketName: 'image'});
         } catch (e) {
             console.error(e);
         }
@@ -52,17 +54,16 @@ export class DB_CRUD {
     }
 
     //image
-    async addImage(image) {
-        const result = await this.db.collection("image").insertOne({data: image});
-        return result.insertedId
+    getImage(id) {
+        return this.gfs.openDownloadStream(ObjectId(id));
     }
 
-    async getImage(id) {
-        return await this.db.collection("image").find({_id: id});
+    async checkImage(id) {
+        return this.gfs.find({_id: ObjectId(id)}).toArray();
     }
 
     async deleteImage(id) {
-        return await this.db.collection("image").deleteOne({_id: id});
+        return this.gfs.delete(ObjectId(id));
     }
 }
 
@@ -86,4 +87,4 @@ async function listDatabases(client) {
 
     console.log("Databases:");
     databasesList.databases.forEach(db => console.log(` - ${db.name}`));
-};
+}
