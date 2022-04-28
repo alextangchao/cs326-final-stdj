@@ -1,17 +1,17 @@
-import {  MongoClient, ServerApiVersion } from 'mongodb';
+import { MongoClient, ServerApiVersion } from 'mongodb';
 import 'dotenv/config';
 import crypto from 'crypto';
 
 const username = process.env['DB_USERNAME'];
-const pwd = process.env['PWD']; 
+const pwd = encodeURIComponent(process.env['PWD']);
 
 const uri = `mongodb+srv://${username}:${pwd}@cluster0.ycngz.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 
-async function main(){
+async function main() {
     try {
         await client.connect();
-        await  listDatabases(client);
+        await listDatabases(client);
     } catch (e) {
         console.error(e);
     } finally {
@@ -19,9 +19,9 @@ async function main(){
     }
 }
 
-async function listDatabases(client){
+async function listDatabases(client) {
     const databasesList = await client.db().admin().listDatabases();
- 
+
     console.log("Databases:");
     databasesList.databases.forEach(db => console.log(` - ${db.name}`));
 };
