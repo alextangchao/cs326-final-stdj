@@ -1,6 +1,6 @@
 import passport from 'passport';
 import LocalStrategy from 'passport-local';
-import { MongoClient } from 'mongodb';
+import {  MongoClient, ServerApiVersion } from 'mongodb';
 import 'dotenv/config';
 import { crypto_hash } from './database.js';
 
@@ -8,7 +8,7 @@ const username = process.env['DB_USERNAME'];
 const pwd = process.env['PWD']; 
 
 const uri = `mongodb+srv://${username}:${pwd}@cluster0.ycngz.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
-const client = new MongoClient(uri);
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 
 passport.serializeUser(function(user, done) {
   done(null, user);

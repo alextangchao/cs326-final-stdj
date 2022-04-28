@@ -1,4 +1,4 @@
-import { MongoClient } from 'mongodb';
+import {  MongoClient, ServerApiVersion } from 'mongodb';
 import 'dotenv/config';
 import crypto from 'crypto';
 
@@ -6,7 +6,7 @@ const username = process.env['DB_USERNAME'];
 const pwd = process.env['PWD']; 
 
 const uri = `mongodb+srv://${username}:${pwd}@cluster0.ycngz.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
-const client = new MongoClient(uri);
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 
 async function main(){
     try {
