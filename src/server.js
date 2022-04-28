@@ -111,7 +111,7 @@ app.post('/user/register', async (request, response) => {
         await addUserToDB(user);
         response.status(200).json(user);
     } else {
-        response.status(400).json({ error: "Bad Requset: Missing params"});
+        response.status(400).json({ error: "Bad Requset: Missing params" });
     }
 });
 
@@ -148,6 +148,11 @@ app.get('/image', async function (req, response) {
 
 app.delete('/image/delete', async function (req, response) {
     response.status(200).json(fake_image_id);
+});
+
+app.get('/test/var', async function (req, response) {
+    const data = process.env.TEST_VAR;
+    response.status(200).json({ data: data });
 });
 
 app.listen(port, () => {
