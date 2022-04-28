@@ -29,11 +29,6 @@ export class DB_CRUD {
 
     //review
     async addReview(review) {
-        // const rating = review.rating;
-        // const location = review.location;
-        // const comment = review.comment;
-        // const date = review.date;
-        // const user_id = review.user_id;
         return await this.db.collection("review").insertOne({review}); 
     }
 
@@ -43,6 +38,10 @@ export class DB_CRUD {
 
     async getReview(id) {
         return await this.db.collection("review").find({_id: id});
+    }
+
+    async getReviewByLocation(location) {
+        return await this.db.collection("review").find({location: location}).toArray();
     }
 
     async updateReview(id, review) {
