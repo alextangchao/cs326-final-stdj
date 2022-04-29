@@ -44,7 +44,7 @@ export async function login_return_token(request, response) {
 
         if (user) {
             const body = { _id: user._id };
-            const token = jwt.sign({ user: body }, salt);
+            const token = jwt.sign({ user: body }, salt, { expiresIn: '1d' });
             return response.json({ token });
         } else {
             response.status(401).json(info);

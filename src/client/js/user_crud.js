@@ -35,6 +35,8 @@ export async function loginUser(user) {
   if (response.status === 401) {
     alert("Incorrect login credientials");
   } else {
+    const data = await response.json();
+    document.cookie = `jwt_token=${data.token}`;
     location.replace("/index.html");
   }
 }
