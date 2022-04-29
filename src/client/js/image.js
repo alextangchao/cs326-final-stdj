@@ -8,9 +8,9 @@ export async function uploadImage(image) {
     formData.append('image', image);
     const response = await fetch("/image/create", {
         method: 'POST',
-        headers: {
-            'Content-Type': 'multipart/form-data',
-        },
+        // headers: {
+        //     'Content-Type': 'multipart/form-data',
+        // },
         body: formData,
     })
     if (response.ok) {
