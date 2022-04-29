@@ -1,8 +1,8 @@
 import passport from 'passport';
 import LocalStrategy from 'passport-local';
-import { MongoClient, ServerApiVersion } from 'mongodb';
+import { MongoClient, ServerApiVersion, ObjectId } from 'mongodb';
 import 'dotenv/config';
-import { crypto_hash } from './database.js';
+import { crypto_hash, DB_CRUD } from './database.js';
 import jwt from 'jsonwebtoken';
 import pkg from 'passport-jwt';
 
@@ -49,9 +49,14 @@ export async function auth_setup() {
             },
             async (token, done) => {
                 try {
+                    await client.connect();
+                    const matched = await client.db("foodandumass").collection("user").findOne({ _id: ObjectId(token.user._id) });
+                    if (!matched) { return done(null, false, { message: "Failed to authenticated" }); }
                     return done(null, token.user);
                 } catch (error) {
                     done(error);
+                } finally {
+                    await client.close();
                 }
             }
         )
