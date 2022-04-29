@@ -5,10 +5,9 @@ import {faker} from '@faker-js/faker';
 import cors from "cors";
 import {fileURLToPath} from 'url';
 import {dirname, join} from 'path';
-import passport from 'passport';
 import multer from 'multer';
 import {GridFsStorage} from 'multer-gridfs-storage';
-import {auth_setup} from './auth.js';
+import {auth_setup, login_return_token} from './auth.js';
 import {DB_CRUD} from './database.js';
 
 
@@ -118,9 +117,7 @@ app.get('/user/reviews', async (request, response) => {
 // setup passport local strategy
 await auth_setup();
 
-app.post('/user/login', passport.authenticate('local', {
-    successRedirect: '/index.html'
-}));
+app.post('/user/login', login_return_token);
 
 app.post('/user/register', async (request, response) => {
     const options = request.body;
