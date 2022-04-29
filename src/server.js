@@ -136,24 +136,72 @@ app.post('/user/register', async (request, response) => {
 
 // REVIEWS
 app.post('/review/create', async (request, response) => {
-    response.status(200).json(fake_review_1);
+    try{
+    const options = request.body;
+    const user_id = options.user_id;
+    const rating = options.rating;
+    const location = options.location;
+    const comment = options.comment;
+    const result = await db_crud.addReview({ user_id: user_id, rating: rating, location: location, comment: comment })
+    response.status(200).json(result);
+    } catch (err) {
+        response.status(500).send(err);
+    }
 });
 
 app.post('/review', async (request, response) => {
-    response.status(200).json(fake_review_1);
+    try{
+        const options = request.body;
+        const review_id = options.review_id;
+        const result = await db_crud.getReview(review_id)
+        response.status(200).json(result);
+    } catch (err) {
+        response.status(500).send(err);
+    }
 });
 
 app.get('/review/location', async (request, response) => {
-    const options = request.query;
-    response.status(200).json(fake_review_list);
+    try{
+        const options = request.body;
+        const location = options.location;
+        const result = await db_crud.getReviewByLocation(location);
+        response.status(200).json(result);
+    } catch (err) {
+        response.status(500).send(err);
+    }
+    
 });
 
 app.put('/review/update', async (request, response) => {
-    response.status(200).json(fake_review_1);
+    try{
+        const options = request.body;
+        const review_id = options.review_id;
+        const user_id = options.user_id;
+        const rating = options.rating;
+        const location = options.location;
+        const comment = options.comment; 
+        const result = await db_crud.updateReview(review_id, 
+            { 
+            user_id:user_id, 
+            rating:rating, 
+            location:location,
+            comment: comment
+        })
+        response.status(200).json(result);
+    } catch (err) {
+        response.status(500).send(err)
+    }
 });
 
 app.delete('/review/delete', async (request, response) => {
-    response.status(200).json(fake_review_1);
+    try{
+        const options = request.body;
+        const review_id = options.review_id;
+        const result = await db_crud.deleteReview(review_id);
+        response.status(200).json(result);
+    } catch (err) {
+        response.status(500).send(err);
+    }
 });
 
 // IMAGE

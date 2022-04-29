@@ -29,7 +29,7 @@ export class DB_CRUD {
 
     //review
     async addReview(review) {
-        return await this.db.collection("review").insertOne({review}); 
+        return await this.db.collection("review").insertOne(review); 
     }
 
     async deleteReview(id) {
