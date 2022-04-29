@@ -33,7 +33,9 @@ async function post_review() {
     }
     else {
         window.location.href = `${review.location}.html`;
+        ls.removeItem(IMAGE_ID)
     }
+    
 }
 
 document.getElementById("img").addEventListener("change", process_img);
