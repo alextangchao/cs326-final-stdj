@@ -26,6 +26,10 @@ export class DB_CRUD {
         await this.db.collection("user").insertOne(user);
     }
 
+    async getUsers() {
+        return await this.db.collection("user").find().toArray();
+    }
+
     //image
     getImage(id) {
         return this.gfs.openDownloadStream(ObjectId(id));

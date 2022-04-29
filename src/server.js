@@ -9,6 +9,7 @@ import multer from 'multer';
 import {GridFsStorage} from 'multer-gridfs-storage';
 import {auth_setup, login_return_token} from './auth.js';
 import {DB_CRUD} from './database.js';
+import passport from 'passport';
 
 
 const __filename = fileURLToPath(import.meta.url);
@@ -107,6 +108,15 @@ app.delete('/user/delete', async (request, response) => {
 app.get('/user', async (request, response) => {
     response.status(200).json(fake_user);
 });
+
+// example auth route for getting all users
+app.get('/users', passport.authenticate('jwt', { session: false }),
+    async function(request, response) {
+        const users = await db_crud.getUsers();
+        console.log(users);
+        response.status(200).json(users);
+    }
+);
 
 // return all the reviews post by this user
 app.get('/user/reviews', async (request, response) => {

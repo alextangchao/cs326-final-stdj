@@ -3,7 +3,11 @@ import LocalStrategy from 'passport-local';
 import { MongoClient, ServerApiVersion } from 'mongodb';
 import 'dotenv/config';
 import { crypto_hash } from './database.js';
-import jwt from 'jsonwebtoken'
+import jwt from 'jsonwebtoken';
+import pkg from 'passport-jwt';
+
+const JWTstrategy = pkg.Strategy;
+const ExtractJwt = pkg.ExtractJwt;
 
 const username = process.env['DB_USERNAME'];
 const pwd = encodeURIComponent(process.env['PWD']);
@@ -36,6 +40,22 @@ export async function auth_setup() {
             }
         }
     ));
+
+    passport.use(
+        new JWTstrategy(
+            {
+                secretOrKey: salt,
+                jwtFromRequest: ExtractJwt.fromUrlQueryParameter('token')
+            },
+            async (token, done) => {
+                try {
+                    return done(null, token.user);
+                } catch (error) {
+                    done(error);
+                }
+            }
+        )
+    );
 }
 
 export async function login_return_token(request, response) {
