@@ -16,7 +16,8 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const username = process.env['DB_USERNAME'];
-const pwd = encodeURIComponent(process.env['PWD']);
+const pwd = encodeURIComponent(process.env['PASSWORD']);
+
 const DB_URL = `mongodb+srv://${username}:${pwd}@cluster0.ycngz.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
 const DB_NAME = "foodandumass";
 
@@ -27,6 +28,7 @@ const dining_hall = ['hampshire', 'franklin', 'berkshire', 'worcester']
 const app = express();
 const port = process.env.PORT || 3000;
 const storage = new GridFsStorage({
+    url: DB_URL,
     db: db_crud.db,
     file: (req, file) => {
         return {
@@ -35,6 +37,7 @@ const storage = new GridFsStorage({
         }
     }
 });
+
 const upload = multer({storage});
 
 app.use(cors());
@@ -141,8 +144,10 @@ app.post('/review/create', async (request, response) => {
     const user_id = options.user_id;
     const rating = options.rating;
     const location = options.location;
-    const comment = options.comment;
-    const result = await db_crud.addReview({ user_id: user_id, rating: rating, location: location, comment: comment })
+    const review_text = options.review_text;
+    const visited_date = options.visited_date;
+    const result = await db_crud.addReview({ user_id: user_id, rating: rating, location: location, review_text: review_text,
+    visited_date: visited_date })
     response.status(200).json(result);
     } catch (err) {
         response.status(500).send(err);
@@ -162,8 +167,10 @@ app.post('/review', async (request, response) => {
 
 app.get('/review/location', async (request, response) => {
     try{
-        const options = request.body;
-        const location = options.location;
+        console.log("server here")
+        const location = request.query.name;
+        
+        console.log(location)
         const result = await db_crud.getReviewByLocation(location);
         response.status(200).json(result);
     } catch (err) {
@@ -179,13 +186,15 @@ app.put('/review/update', async (request, response) => {
         const user_id = options.user_id;
         const rating = options.rating;
         const location = options.location;
-        const comment = options.comment; 
+        const review_text = options.review_text; 
+        const visited_date = options.visited_date;
         const result = await db_crud.updateReview(review_id, 
             { 
             user_id:user_id, 
             rating:rating, 
             location:location,
-            comment: comment
+            review_text: review_text,
+            visited_date: visited_date
         })
         response.status(200).json(result);
     } catch (err) {
