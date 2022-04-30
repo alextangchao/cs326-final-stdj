@@ -26,6 +26,10 @@ export class DB_CRUD {
         user.password = crypto_hash(String(user.password));
         await this.db.collection("user").insertOne(user);
     }
+    
+    async getUsers() {
+        return await this.db.collection("user").find().toArray();
+    }
 
     //review
     async addReview(review) {

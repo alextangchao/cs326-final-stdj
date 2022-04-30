@@ -5,11 +5,11 @@ import {faker} from '@faker-js/faker';
 import cors from "cors";
 import {fileURLToPath} from 'url';
 import {dirname, join} from 'path';
-import passport from 'passport';
 import multer from 'multer';
 import {GridFsStorage} from 'multer-gridfs-storage';
-import {auth_setup} from './auth.js';
+import {auth_setup, login_return_token} from './auth.js';
 import {DB_CRUD} from './database.js';
+import passport from 'passport';
 
 
 const __filename = fileURLToPath(import.meta.url);
@@ -112,6 +112,15 @@ app.get('/user', async (request, response) => {
     response.status(200).json(fake_user);
 });
 
+// example auth route for getting all users
+app.get('/users', passport.authenticate('jwt', { session: false }),
+    async function(request, response) {
+        const users = await db_crud.getUsers();
+        console.log(users);
+        response.status(200).json(users);
+    }
+);
+
 // return all the reviews post by this user
 app.get('/user/reviews', async (request, response) => {
     const options = request.query;
@@ -121,9 +130,7 @@ app.get('/user/reviews', async (request, response) => {
 // setup passport local strategy
 await auth_setup();
 
-app.post('/user/login', passport.authenticate('local', {
-    successRedirect: '/index.html'
-}));
+app.post('/user/login', login_return_token);
 
 app.post('/user/register', async (request, response) => {
     const options = request.body;
