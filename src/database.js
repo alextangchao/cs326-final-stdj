@@ -44,6 +44,10 @@ export class DB_CRUD {
         return await this.db.collection("review").find({location: location}).toArray();
     }
 
+    async getReviewByUserID(user_id) {
+        return await this.db.collection("review").find({user_id: user_id}).toArray();
+    }
+
     async updateReview(id, review) {
         const filter = { _id: id };
         const updateReview = {
