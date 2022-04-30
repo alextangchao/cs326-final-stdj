@@ -165,12 +165,20 @@ app.post('/review', async (request, response) => {
     }
 });
 
+app.get('review/userid', async (request, response) => {
+    try{
+        const options = request.query;
+        const user_id = options.id;
+        const result = await db_crud.getReviewByUserID(user_id)
+        response.status(200).json(result);
+    } catch (err) {
+        response.status(500).send(err);
+    }
+})
+
 app.get('/review/location', async (request, response) => {
     try{
-        console.log("server here")
         const location = request.query.name;
-        
-        console.log(location)
         const result = await db_crud.getReviewByLocation(location);
         response.status(200).json(result);
     } catch (err) {
