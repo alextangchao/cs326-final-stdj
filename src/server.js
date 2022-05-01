@@ -111,12 +111,28 @@ app.delete('/user/delete', async (request, response) => {
 });
 
 app.get('/user', async (request, response) => {
-    const options = request.query;
-    const user_token = options.id;
-    const decoded = jwt.verify(user_token, salt);
-    const user_id = decoded.user._id;
-    console.log(user_id)
-    response.status(200).json(fake_user);
+    try {
+        const options = request.query;
+        const user_token = options.token;
+        const user_id = options.id;
+        if (user_token === undefined) {
+            // GetUserWithId
+            const user = await db_crud.getUser(user_id);
+            response.status(200).json(user);
+            
+        } else {
+            // GetUserWithJWTToken
+            const decoded = jwt.verify(user_token, salt);
+            const user_id_decoded = decoded.user._id;
+            const user = await db_crud.getUser(user_id_decoded);
+            response.status(200).json(user);
+        }
+    } catch (err) {
+        response.status(500).send(err);
+    }
+
+
+    
 });
 
 // example auth route for getting all users
