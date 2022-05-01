@@ -130,9 +130,6 @@ app.get('/user', async (request, response) => {
     } catch (err) {
         response.status(500).send(err);
     }
-
-
-    
 });
 
 // example auth route for getting all users
@@ -195,11 +192,11 @@ app.post('/review', async (request, response) => {
     }
 });
 
-app.get('review/userid', async (request, response) => {
+app.get('/review/userid', async (request, response) => {
     try{
         const options = request.query;
         const user_id = options.id;
-        const result = await db_crud.getReviewByUserID(user_id)
+        const result = await db_crud.getReviewByUserID(user_id);
         response.status(200).json(result);
     } catch (err) {
         response.status(500).send(err);
