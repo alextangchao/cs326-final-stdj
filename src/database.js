@@ -31,17 +31,21 @@ export class DB_CRUD {
         return await this.db.collection("user").find().toArray();
     }
 
+    async getUser(id) {
+        return await this.db.collection("user").find( ObjectId(id) ).toArray();
+    }
+
     //review
     async addReview(review) {
         return await this.db.collection("review").insertOne(review); 
     }
 
     async deleteReview(id) {
-        return await this.db.collection("review").deleteOne({_id: id})
+        return await this.db.collection("review").deleteOne(ObjectId(id))
     }
 
     async getReview(id) {
-        return await this.db.collection("review").find({_id: id});
+        return await this.db.collection("review").find(ObjectId(id)).toArray();
     }
 
     async getReviewByLocation(location) {

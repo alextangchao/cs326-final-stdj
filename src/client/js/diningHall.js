@@ -1,5 +1,5 @@
 import { getReviewsByLocation, getRviewsByUserID } from "./review_crud.js";
-import { getUser } from "./user_crud.js";
+import { getUserWithID } from "./user_crud.js";
 
 const cur_location = window.location.pathname.slice(1, -5);
 const review_container = document.getElementById("review-container");
@@ -7,20 +7,21 @@ const review_list = await getReviewsByLocation(cur_location);
 
 reviewsRender(review_list, review_container)
 
-function reviewsRender(review_list, review_container){
+async function reviewsRender(review_list, review_container){
     for (let i = 0; i < review_list.length; i++) {
         const curReviewObject = review_list[i];
-        console.log("Printing Current Object:")
-        console.log(curReviewObject)
         const cur_user_id = curReviewObject.user_id;
-        // let cur_user_name = getUser(cur_user_id)
-        // .then((user) => {
-        //   return user.name;
-        // })
-        let cur_user = getUser(cur_user_id).resolve
-        
-        console.log("Printing Current User");
-        console.log(cur_user)
+        console.log("review object")
+        console.log(curReviewObject)
+        const cur_user = await getUserWithID(cur_user_id)
+        const user_reviews = await getRviewsByUserID(cur_user_id)
+        // console.log("Printing Current User");
+        // console.log(cur_user)
+        const user_name = cur_user[0].username;
+        const user_previous_review_nums = user_reviews.length
+        curReviewObject.username = user_name
+        curReviewObject.review_num = user_previous_review_nums
+
         const div = document.createElement('div');
         div.classList.add("review");
         div.innerHTML = review_create_html(i, curReviewObject);
@@ -37,13 +38,13 @@ function review_create_html(index, review_object){
   </div>
 
   <div class="review-flex-column-container">
-    <a id="username" class="review-title">${review_object.user_name}</a>
+    <a id="username" class="review-title">${review_object.username}</a>
     <a id="review-number" class="review-number">${review_object.review_num} Review</a>
 
     <div class="review-flex-row-container">
       <p class="review-rating">Rating:</p>` 
       + review_star_create(review_object.rating) 
-      + `<p class="review-number left-margin">${review_object.created_date.slice(0, 10)}</p>
+      + `<p class="review-number left-margin">${review_object.visited_date.slice(0, 10)}</p>
     </div>
 
     <div class="review-flex-row-container">

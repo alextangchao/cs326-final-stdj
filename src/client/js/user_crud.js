@@ -57,8 +57,16 @@ export async function registerUser(user) {
 }
 
 //get user
-export async function getUser(id) {
+export async function getUserWithID(id) {
   const response = await fetch(`/user?id=${id}`, {
+    method: 'GET',
+  });
+  const data = await response.json();
+  return data;
+}
+// JWT Token
+export async function getUserWithToken(token) {
+  const response = await fetch(`/user?token=${token}`, {
     method: 'GET',
   });
   const data = await response.json();
