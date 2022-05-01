@@ -32,7 +32,7 @@ export class DB_CRUD {
     }
 
     async getUser(id) {
-        return await this.db.collection("user").find({_id: id});
+        return await this.db.collection("user").find( ObjectId(id) ).toArray();
     }
 
     //review
@@ -41,11 +41,11 @@ export class DB_CRUD {
     }
 
     async deleteReview(id) {
-        return await this.db.collection("review").deleteOne({_id: id})
+        return await this.db.collection("review").deleteOne(ObjectId(id))
     }
 
     async getReview(id) {
-        return await this.db.collection("review").find({_id: id});
+        return await this.db.collection("review").find(ObjectId(id)).toArray();
     }
 
     async getReviewByLocation(location) {
