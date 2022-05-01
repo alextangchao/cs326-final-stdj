@@ -21,13 +21,43 @@ export class DB_CRUD {
         }
     }
 
+    //user
     async addUserToDB(user) {
         user.password = crypto_hash(String(user.password));
         await this.db.collection("user").insertOne(user);
     }
-
+    
     async getUsers() {
         return await this.db.collection("user").find().toArray();
+    }
+
+    //review
+    async addReview(review) {
+        return await this.db.collection("review").insertOne(review); 
+    }
+
+    async deleteReview(id) {
+        return await this.db.collection("review").deleteOne({_id: id})
+    }
+
+    async getReview(id) {
+        return await this.db.collection("review").find({_id: id});
+    }
+
+    async getReviewByLocation(location) {
+        return await this.db.collection("review").find({location: location}).toArray();
+    }
+
+    async getReviewByUserID(user_id) {
+        return await this.db.collection("review").find({user_id: user_id}).toArray();
+    }
+
+    async updateReview(id, review) {
+        const filter = { _id: id };
+        const updateReview = {
+            $set: review
+        }
+        return await this.db.collection("review").updateOne(filter, updateReview);
     }
 
     //image

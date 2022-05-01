@@ -65,6 +65,19 @@ export async function readReview(review_id) {
   }
 }
 
+export async function getRviewsByUserID(user_id) {
+  const response = await fetch(`/review/userid?id=${user_id}`,{
+    method: 'GET',
+  });
+
+  if (!response.ok){
+    return null;
+  } else {
+    const data = await response.json();
+    return data;
+  }
+}
+
 export async function getReviewsByLocation(review_location) {
   const response = await fetch(`/review/location?name=${review_location}`, {
     method: 'GET',

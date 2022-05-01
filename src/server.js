@@ -18,6 +18,7 @@ const __dirname = dirname(__filename);
 
 const username = process.env['DB_USERNAME'];
 const pwd = encodeURIComponent(process.env['PASSWORD']);
+
 const DB_URL = `mongodb+srv://${username}:${pwd}@cluster0.ycngz.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
 const DB_NAME = "foodandumass";
 const salt = process.env['SALT']
@@ -29,6 +30,7 @@ const dining_hall = ['hampshire', 'franklin', 'berkshire', 'worcester']
 const app = express();
 const port = process.env.PORT || 3000;
 const storage = new GridFsStorage({
+    url: DB_URL,
     db: db_crud.db,
     file: (req, file) => {
         return {
@@ -37,6 +39,7 @@ const storage = new GridFsStorage({
         }
     }
 });
+
 const upload = multer({storage});
 
 app.use(cors());
@@ -150,24 +153,86 @@ app.post('/user/register', async (request, response) => {
 
 // REVIEWS
 app.post('/review/create', async (request, response) => {
-    response.status(200).json(fake_review_1);
+    try{
+    const options = request.body;
+    const user_id = options.user_id;
+    const rating = options.rating;
+    const location = options.location;
+    const review_text = options.review_text;
+    const visited_date = options.visited_date;
+    const result = await db_crud.addReview({ user_id: user_id, rating: rating, location: location, review_text: review_text,
+    visited_date: visited_date })
+    response.status(200).json(result);
+    } catch (err) {
+        response.status(500).send(err);
+    }
 });
 
 app.post('/review', async (request, response) => {
-    response.status(200).json(fake_review_1);
+    try{
+        const options = request.body;
+        const review_id = options.review_id;
+        const result = await db_crud.getReview(review_id)
+        response.status(200).json(result);
+    } catch (err) {
+        response.status(500).send(err);
+    }
 });
 
+app.get('review/userid', async (request, response) => {
+    try{
+        const options = request.query;
+        const user_id = options.id;
+        const result = await db_crud.getReviewByUserID(user_id)
+        response.status(200).json(result);
+    } catch (err) {
+        response.status(500).send(err);
+    }
+})
+
 app.get('/review/location', async (request, response) => {
-    const options = request.query;
-    response.status(200).json(fake_review_list);
+    try{
+        const location = request.query.name;
+        const result = await db_crud.getReviewByLocation(location);
+        response.status(200).json(result);
+    } catch (err) {
+        response.status(500).send(err);
+    }
+    
 });
 
 app.put('/review/update', async (request, response) => {
-    response.status(200).json(fake_review_1);
+    try{
+        const options = request.body;
+        const review_id = options.review_id;
+        const user_id = options.user_id;
+        const rating = options.rating;
+        const location = options.location;
+        const review_text = options.review_text; 
+        const visited_date = options.visited_date;
+        const result = await db_crud.updateReview(review_id, 
+            { 
+            user_id:user_id, 
+            rating:rating, 
+            location:location,
+            review_text: review_text,
+            visited_date: visited_date
+        })
+        response.status(200).json(result);
+    } catch (err) {
+        response.status(500).send(err)
+    }
 });
 
 app.delete('/review/delete', async (request, response) => {
-    response.status(200).json(fake_review_1);
+    try{
+        const options = request.body;
+        const review_id = options.review_id;
+        const result = await db_crud.deleteReview(review_id);
+        response.status(200).json(result);
+    } catch (err) {
+        response.status(500).send(err);
+    }
 });
 
 // IMAGE
