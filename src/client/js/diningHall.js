@@ -13,13 +13,14 @@ function reviewsRender(review_list, review_container){
         console.log("Printing Current Object:")
         console.log(curReviewObject)
         const cur_user_id = curReviewObject.user_id;
-        let cur_user_name = getUser(cur_user_id)
-        .then((user) => {
-          return user.name;
-        })
-        // let cur_user = getUser(cur_user_id).then(res => console.log(res.name));
+        // let cur_user_name = getUser(cur_user_id)
+        // .then((user) => {
+        //   return user.name;
+        // })
+        let cur_user = getUser(cur_user_id).resolve
+        
         console.log("Printing Current User");
-        console.log(cur_user_name)
+        console.log(cur_user)
         const div = document.createElement('div');
         div.classList.add("review");
         div.innerHTML = review_create_html(i, curReviewObject);
