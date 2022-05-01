@@ -10,15 +10,17 @@ import {GridFsStorage} from 'multer-gridfs-storage';
 import {auth_setup, login_return_token} from './auth.js';
 import {DB_CRUD} from './database.js';
 import passport from 'passport';
+import jwt from 'jsonwebtoken';
 
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const username = process.env['DB_USERNAME'];
-const pwd = encodeURIComponent(process.env['PWD']);
+const pwd = encodeURIComponent(process.env['PASSWORD']);
 const DB_URL = `mongodb+srv://${username}:${pwd}@cluster0.ycngz.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
 const DB_NAME = "foodandumass";
+const salt = process.env['SALT']
 
 const db_crud = new DB_CRUD();
 await db_crud.connect(DB_URL, DB_NAME);
@@ -106,6 +108,11 @@ app.delete('/user/delete', async (request, response) => {
 });
 
 app.get('/user', async (request, response) => {
+    const options = request.query;
+    const user_token = options.id;
+    const decoded = jwt.verify(user_token, salt);
+    const user_id = decoded.user._id;
+    console.log(user_id)
     response.status(200).json(fake_user);
 });
 
