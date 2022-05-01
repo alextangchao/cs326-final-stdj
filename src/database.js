@@ -31,6 +31,10 @@ export class DB_CRUD {
         return await this.db.collection("user").find().toArray();
     }
 
+    async getUser(id) {
+        return await this.db.collection("user").find({_id: id});
+    }
+
     //review
     async addReview(review) {
         return await this.db.collection("review").insertOne(review); 
