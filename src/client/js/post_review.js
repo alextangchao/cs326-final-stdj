@@ -1,12 +1,22 @@
 import { createReview } from "./review_crud.js";
 import { uploadImage } from "./image.js";
+import { getUserWithToken } from "./user_crud.js";
 
 const ls = window.localStorage;
 const IMAGE_ID = "image_id";
 
+window.getCookie = function(name) {
+    var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+    if (match) return match[2];
+  }
+
+const jwt_token =window.getCookie('jwt_token')
+const cur_user = await getUserWithToken(jwt_token)
+const cur_user_id = cur_user[0]._id;
+
 function gather_review_info() {
     return {
-        user_id: 0, // process logic TBD
+        user_id: cur_user_id,
         location: document.getElementById("diningHall").value,
         review_text: document.getElementById("comment").value,
         review_img_id: ls.getItem(IMAGE_ID),
