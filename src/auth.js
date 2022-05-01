@@ -10,7 +10,7 @@ const JWTstrategy = pkg.Strategy;
 const ExtractJwt = pkg.ExtractJwt;
 
 const username = process.env['DB_USERNAME'];
-const pwd = encodeURIComponent(process.env['PWD']);
+const pwd = encodeURIComponent(process.env['PASSWORD']);
 const salt = process.env['SALT']
 
 const uri = `mongodb+srv://${username}:${pwd}@cluster0.ycngz.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
