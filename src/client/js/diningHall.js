@@ -1,5 +1,6 @@
 import { getReviewsByLocation, getRviewsByUserID } from "./review_crud.js";
 import { getUserWithID } from "./user_crud.js";
+import { getImage } from "./image.js";
 
 const cur_location = window.location.pathname.slice(1, -5);
 const review_container = document.getElementById("review-container");
@@ -18,28 +19,35 @@ async function reviewsRender(review_list, review_container){
         // console.log("Printing Current User");
         // console.log(cur_user)
         const user_name = cur_user[0].username;
-        const user_previous_review_nums = user_reviews.length
+        const user_previous_review_nums = user_reviews.length;
+        
+        const image_URL = curReviewObject.review_img_id;
+        // console.log(image_URL)
         curReviewObject.username = user_name
         curReviewObject.review_num = user_previous_review_nums
 
         const div = document.createElement('div');
         div.classList.add("review");
-        div.innerHTML = review_create_html(i, curReviewObject);
+        div.innerHTML = await review_create_html(i, curReviewObject, image_URL);
 
         review_container.appendChild(div);
     }
 }
 
-function review_create_html(index, review_object){
-    
-    const image = ''; // TODO
+async function review_create_html(index, review_object, image_id){
+
+    let imageURL = "./img/no_image.png"
+    if (image_id !== undefined && image_id !== null) {
+      imageURL = await getImage(image_id);
+    }
+
     return `<div class="sm-img-rounded-container">
     <img class="selectDisable" src="./img/duck.jpeg">
   </div>
 
   <div class="review-flex-column-container">
-    <a id="username" class="review-title">${review_object.username}</a>
-    <a id="review-number" class="review-number">${review_object.review_num} Review</a>
+    <p id="username" class="review-title">${review_object.username}</a>
+    <p id="review-number" class="review-number">${review_object.review_num} Review</a>
 
     <div class="review-flex-row-container">
       <p class="review-rating">Rating:</p>` 
@@ -59,7 +67,7 @@ function review_create_html(index, review_object){
   </div>
 
   <div class="review-pic selectDisable">
-    <img class="selectDisable" src="./img/food.png">
+    <img class="selectDisable" src=${imageURL}>
   </div>`
 }
 

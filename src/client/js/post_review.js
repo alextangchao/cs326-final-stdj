@@ -15,6 +15,7 @@ const cur_user = await getUserWithToken(jwt_token)
 const cur_user_id = cur_user[0]._id;
 
 function gather_review_info() {
+    console.log("Gathering Information")
     return {
         user_id: cur_user_id,
         location: document.getElementById("diningHall").value,
@@ -37,11 +38,14 @@ async function process_img() {
 
 async function post_review() {
     const review = gather_review_info();
+    
     const resp = await createReview(review);
     if (resp === null) {
         alert("Failed to post review! Please Try Again");
     }
     else {
+        console.log("=====")
+        console.log(review)
         window.location.href = `${review.location}.html`;
         ls.removeItem(IMAGE_ID)
     }

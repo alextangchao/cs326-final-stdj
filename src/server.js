@@ -173,8 +173,9 @@ app.post('/review/create', async (request, response) => {
     const location = options.location;
     const review_text = options.review_text;
     const visited_date = options.visited_date;
+    const review_img_id = options.review_img_id;
     const result = await db_crud.addReview({ user_id: user_id, rating: rating, location: location, review_text: review_text,
-    visited_date: visited_date })
+    visited_date: visited_date, review_img_id: review_img_id})
     response.status(200).json(result);
     } catch (err) {
         response.status(500).send(err);
