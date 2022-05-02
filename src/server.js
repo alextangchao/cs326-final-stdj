@@ -184,12 +184,12 @@ app.post('/review/create', async (request, response) => {
     }
 });
 
-app.post('/review', async (request, response) => {
+app.get('/review', async (request, response) => {
     try {
-        const options = request.body;
-        const review_id = options.review_id;
-        const result = await db_crud.getReview(review_id)
-        response.status(200).json(result);
+        const options = request.query;
+        const review_id = options.id;
+        const result = await db_crud.getReview(review_id);
+        response.status(200).json(result[0]);
     } catch (err) {
         response.status(500).send(err);
     }
@@ -227,21 +227,21 @@ app.put('/review/update', async (request, response) => {
     try {
         const options = request.body;
         const review_id = options.review_id;
-        const user_id = options.user_id;
         const rating = options.rating;
         const location = options.location;
         const review_text = options.review_text;
         const visited_date = options.visited_date;
         const result = await db_crud.updateReview(review_id,
             {
-                user_id: user_id,
                 rating: rating,
                 location: location,
                 review_text: review_text,
                 visited_date: visited_date
-            })
+            });
+        console.log("update review", result);
         response.status(200).json(result);
     } catch (err) {
+        console.log("update review", err);
         response.status(500).send(err)
     }
 });
@@ -250,9 +250,17 @@ app.delete('/review/delete', async (request, response) => {
     try {
         const options = request.body;
         const review_id = options.review_id;
+        const img_id = (await db_crud.getReview(review_id))[0].review_img_id;
         const result = await db_crud.deleteReview(review_id);
+        if (result.acknowledged && result.deletedCount === 1 && img_id !== null) {
+            const image = await db_crud.checkImage(id);
+            if (image.length !== 0) {
+                await db_crud.deleteImage(img_id);
+            }
+        }
         response.status(200).json(result);
     } catch (err) {
+        console.log("review delete", err);
         response.status(500).send(err);
     }
 });
