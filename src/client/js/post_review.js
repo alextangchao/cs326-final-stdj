@@ -52,5 +52,5 @@ async function post_review() {
     
 }
 
-document.getElementById("img").addEventListener("change", process_img);
+// document.getElementById("img").addEventListener("change", process_img);
 document.getElementById("post").addEventListener("click", post_review);

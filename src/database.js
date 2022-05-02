@@ -1,4 +1,4 @@
-import {MongoClient, ServerApiVersion, GridFSBucket, ObjectId} from 'mongodb';
+import { MongoClient, ServerApiVersion, GridFSBucket, ObjectId } from 'mongodb';
 import 'dotenv/config';
 import crypto from 'crypto';
 
@@ -15,7 +15,7 @@ export class DB_CRUD {
                 serverApi: ServerApiVersion.v1
             });
             this.db = this.client.db(db_name);
-            this.gfs = new GridFSBucket(this.db, {bucketName: 'image'});
+            this.gfs = new GridFSBucket(this.db, { bucketName: 'image' });
         } catch (e) {
             console.error(e);
         }
@@ -26,22 +26,22 @@ export class DB_CRUD {
         user.password = crypto_hash(String(user.password));
         await this.db.collection("user").insertOne(user);
     }
-    
+
     async getUsers() {
         return await this.db.collection("user").find().toArray();
     }
 
     async getUser(id) {
-        return await this.db.collection("user").find( ObjectId(id) ).toArray();
+        return await this.db.collection("user").find(ObjectId(id)).toArray();
     }
 
     //review
     async addReview(review) {
-        return await this.db.collection("review").insertOne(review); 
+        return await this.db.collection("review").insertOne(review);
     }
 
     async deleteReview(id) {
-        return await this.db.collection("review").deleteOne(ObjectId(id))
+        return await this.db.collection("review").deleteOne({ _id: ObjectId(id) });
     }
 
     async getReview(id) {
@@ -49,11 +49,14 @@ export class DB_CRUD {
     }
 
     async getReviewByLocation(location) {
-        return await this.db.collection("review").find({location: location}).toArray();
+        if (location === "index") {
+            return await this.db.collection("review").find().toArray();
+        }
+        return await this.db.collection("review").find({ location: location }).toArray();
     }
 
     async getReviewByUserID(user_id) {
-        return await this.db.collection("review").find({user_id: user_id}).toArray();
+        return await this.db.collection("review").find({ user_id: user_id }).toArray();
     }
 
     async updateReview(id, review) {
@@ -70,7 +73,7 @@ export class DB_CRUD {
     }
 
     async checkImage(id) {
-        return this.gfs.find({_id: ObjectId(id)}).toArray();
+        return this.gfs.find({ _id: ObjectId(id) }).toArray();
     }
 
     async deleteImage(id) {

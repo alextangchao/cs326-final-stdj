@@ -1,8 +1,20 @@
+import { getUserWithToken } from "./user_crud.js";
 import { updateReview } from "./review_crud.js";
 import { uploadImage } from "./image.js";
 
 const ls = window.localStorage;
 const IMAGE_ID = "image_id";
+window.getCookie = function (name) {
+    var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+    if (match) return match[2];
+}
+
+const jwt_token = window.getCookie('jwt_token')
+const cur_user = (await getUserWithToken(jwt_token))[0]
+console.log("user", cur_user);
+const cur_user_id = cur_user._id;
+
+document.getElementById("user-name").innerText = cur_user.username;
 
 function gather_review_info() {
     return {
