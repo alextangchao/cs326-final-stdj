@@ -31,7 +31,6 @@ a {
     width: 1080px;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
     margin-right: auto;
     margin-left: auto;
 }
@@ -39,7 +38,6 @@ a {
 .flex-row-container {
     display: flex;
     flex-direction: row;
-    height: auto;
 }
 
 .flex-column-container {

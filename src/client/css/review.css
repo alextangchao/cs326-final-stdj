@@ -1,6 +1,5 @@
 .review-container {
     width: 100%;
-    height: auto;
     display: flex;
     flex-direction: column;
 }
@@ -10,7 +9,8 @@
     margin-top: 30px;
     display: flex;
     flex-direction: row;
-    height: 270px;
+    height: 100%;
+
     border-top: 2px solid lightgrey;
     border-bottom: 2px solid lightgrey;
 }
@@ -18,11 +18,13 @@
 .review-title {
     font-weight: bold;
     font-size: 18px;
+    height:10px;
 }
 
 .review-number {
     font-size: 10px;
     color: lightgrey;
+    height:10px;
 }
 
 .review-rating {
@@ -33,7 +35,15 @@
 .review-body {
     font-family: Georgia;
     font-size:13px;
+    font-weight: 600;
     color: black;
+}
+
+.review-body:hover {
+    font-family: Georgia;
+    font-size:13px;
+    font-weight: 600;
+    color: red;
 }
 
 .review-edit {
