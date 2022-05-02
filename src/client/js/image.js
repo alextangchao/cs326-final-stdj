@@ -8,12 +8,9 @@ export async function uploadImage(image) {
     formData.append('image', image);
     const response = await fetch("/image/create", {
         method: 'POST',
-        // headers: {
-        //     'Content-Type': 'multipart/form-data',
-        // },
         body: formData,
     })
-    if (response.ok) {
+    if (response.ok && response.status === 200) {
         const data = await response.json();
         return data.id;
     }
@@ -29,7 +26,7 @@ export async function getImage(id) {
     const response = await fetch("/image?id=" + id, {
         method: 'GET',
     })
-    if (response.ok) {
+    if (response.ok && response.status === 200) {
         const data = await response.blob();
         const imageURL = URL.createObjectURL(data);
         return imageURL;
@@ -50,7 +47,7 @@ export async function deleteImage(id) {
         },
         body: JSON.stringify({ id: id }),
     })
-    if (response.ok) {
+    if (response.ok && response.status === 200) {
         const data = await response.json();
         return data.id;
     }

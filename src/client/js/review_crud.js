@@ -18,13 +18,13 @@ export async function updateReview(review) {
   }
 }
 
-export async function deleteReview(review) {
+export async function deleteReview(review_id) {
   const response = await fetch(`/review/delete`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(review),
+    body: JSON.stringify({ review_id: review_id }),
   });
 
   if (!response.ok) {
@@ -66,11 +66,11 @@ export async function readReview(review_id) {
 }
 
 export async function getRviewsByUserID(user_id) {
-  const response = await fetch(`/review/userid?id=${user_id}`,{
+  const response = await fetch(`/review/userid?id=${user_id}`, {
     method: 'GET',
   });
 
-  if (!response.ok){
+  if (!response.ok) {
     return null;
   } else {
     const data = await response.json();
