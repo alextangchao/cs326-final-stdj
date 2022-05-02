@@ -1,29 +1,9 @@
-import { getUserWithToken } from "./user_crud.js";
-import {  deleteReview, getRviewsByUserID } from "./review_crud.js";
+import { getLoginUser } from "./user_crud.js";
+import { deleteReview, getRviewsByUserID } from "./review_crud.js";
 import { getImage } from "./image.js";
 import { deleteUser } from "./user_crud.js";
 
-// async function reviewsRender() {
-//   const review_container = document.getElementById("review-container");
-//   review_container.innerHTML = "";
-//   const review_list = await getUserReviews("userId");
-//   for (let i = 0; i < review_list.length; i++) {
-//     const curReviewObject = review_list[i];
-//     const div = document.createElement('div');
-//     div.classList.add("review");
-//     div.innerHTML = await review_create_html(i, curReviewObject);
-//     review_container.appendChild(div);
-//     addButtonEvent(i, curReviewObject.id);
-//   }
-// }
-
-window.getCookie = function (name) {
-  var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
-  if (match) return match[2];
-}
-
-const jwt_token = window.getCookie('jwt_token')
-const cur_user = (await getUserWithToken(jwt_token))[0]
+const cur_user = await getLoginUser();
 const cur_user_id = cur_user._id;
 
 document.getElementById("user-name").innerText = cur_user.username;
@@ -36,27 +16,20 @@ async function reviewsRender() {
   const review_container = document.getElementById("review-container");
   review_container.innerHTML = "";
   const review_list = await getRviewsByUserID(cur_user_id);
+  const user_name = cur_user.username;
+  const user_previous_review_nums = review_list.length;
   for (let i = 0; i < review_list.length; i++) {
     const curReviewObject = review_list[i];
-    // const cur_user_id = curReviewObject.user_id;
     console.log("review object")
     console.log(curReviewObject)
-    // const cur_user = await getUserWithID(cur_user_id)
-    // const user_reviews = await getRviewsByUserID(cur_user_id)
-    // console.log("Printing Current User");
-    // console.log(cur_user)
-    const user_name = cur_user.username;
-    const user_previous_review_nums = review_list.length;
 
-    const image_URL = curReviewObject.review_img_id;
-    // console.log(image_URL)
+    const image_id = curReviewObject.review_img_id;
     curReviewObject.username = user_name
     curReviewObject.review_num = user_previous_review_nums
 
     const div = document.createElement('div');
     div.classList.add("review");
-    div.innerHTML = await review_create_html(i, curReviewObject, image_URL);
-
+    div.innerHTML = await review_create_html(i, curReviewObject, image_id);
     review_container.appendChild(div);
 
     addButtonEvent(i, curReviewObject._id);
@@ -90,8 +63,8 @@ async function review_create_html(index, review_object, image_id) {
 
             <div class="review-flex-row-container">
               <p class="review-rating">Rating:</p>`
-              + review_star_create(review_object.rating)
-              + `<p class="review-number left-margin">${review_object.visited_date.slice(0, 10)}</p>
+    + review_star_create(review_object.rating)
+    + `<p class="review-number left-margin">${review_object.visited_date.slice(0, 10)}</p>
             </div>
 
             <div class="review-flex-row-container">

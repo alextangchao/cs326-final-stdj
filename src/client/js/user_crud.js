@@ -80,3 +80,21 @@ export async function getUserReviews(id) {
   const data = await response.json();
   return data;
 }
+
+// check user login status
+export function getCookie(name) {
+  var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+  if (match) return match[2];
+  return null;
+}
+
+export async function getLoginUser() {
+  const jwt_token = getCookie('jwt_token');
+  if (jwt_token === null) {
+    location.replace("/login.html");
+    // alert("Please first login!");
+  }
+  else {
+    return (await getUserWithToken(jwt_token))[0];
+  }
+}

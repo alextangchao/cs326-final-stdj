@@ -45,7 +45,7 @@ export class DB_CRUD {
     }
 
     async getReview(id) {
-        return await this.db.collection("review").find(ObjectId(id)).toArray();
+        return await this.db.collection("review").find({ _id: ObjectId(id) }).toArray();
     }
 
     async getReviewByLocation(location) {
@@ -60,11 +60,13 @@ export class DB_CRUD {
     }
 
     async updateReview(id, review) {
-        const filter = { _id: id };
+        const filter = { _id: ObjectId(id) };
         const updateReview = {
             $set: review
         }
-        return await this.db.collection("review").updateOne(filter, updateReview);
+        const options = { upsert: false };
+        console.log("update parm", filter, updateReview);
+        return await this.db.collection("review").updateOne(filter, updateReview, options);
     }
 
     //image
