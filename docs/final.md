@@ -67,7 +67,7 @@ Hongwei Shu ()
 
 # Database
 #### user document
-```json
+```
 {
 	_id: <ObjectId1>,
 	username: String,  // The username of the user
@@ -76,36 +76,36 @@ Hongwei Shu ()
 ```
 
 #### review document
-```json
+```
 {
-    _id: <ObjectId1>,
+	_id: <ObjectId1>,
 	user_id: String,  // User id for referencing user data
 	rating: Integer,  // User rating
-    location: String, // Dining hall location
-    review_text: String, // User review
-    visited_date: String, // Visited date submitted by the user, YYYY-MM-DD
-    review_img_id: String[Optional] // Uploaded image id
+	location: String, // Dining hall location
+	review_text: String, // User review
+	visited_date: String, // Visited date submitted by the user, YYYY-MM-DD
+	review_img_id: String[Optional] // Uploaded image id
 }
 ```
 
 ### image GridFS
 #### image.files
-```json
+```
 {
 	_id: <ObjectId1>,
-    length: Integer, // file length
-    chunkSize: Integer, // chunk count in image.chunks
-    uploadDate: Date, // image uploaded date
+    	length: Integer, // file length
+    	chunkSize: Integer, // chunk count in image.chunks
+    	uploadDate: Date, // image uploaded date
 	filename: String,  // filename of the image
 	contentType: String,  // image type
 }
 ```
 
 #### image.chunks
-```json
+```
 {
 	_id: <ObjectId1>,
-    files_id: <ObjectId2>, // Reference id for image.files 
+    	files_id: <ObjectId2>, // Reference id for image.files 
 	n: Integer,  // Sequence number of the chunk
 	data: Binary // Actual file data
 }
