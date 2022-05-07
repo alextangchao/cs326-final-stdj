@@ -47,7 +47,6 @@ Hongwei Shu ()
 /user/login - which allow users to login \
 /user/register - which allow users to register \
 /user?id= - a view endpoint which return the user's information by uuid \
-/user/reviews?id - which return all the reviews post by a user by user uuid \
 /user/update - which allow users to update personal information such as pfp, name, password \
 /user/delete - which allow users to delete their account and reviews accordingly
 
@@ -55,6 +54,7 @@ Hongwei Shu ()
 /review/location?name= - which returns all of the reviews of a specific dining hall \
 /review/create - which allow users to create a review \
 /review?id= - a view endpoint which return a specific review base on review id \
+/review/userid - which return all the reviews post by the user with userid \
 /review/update - which allow users to update their review \
 /review/delete - which allow users to delete their review 
 
@@ -122,10 +122,10 @@ Hongwei Shu ()
 | franklin.html     | Page includes all the reviews for Franklin dining  |
 | worcester.html    | Page includes all the reviews for Worcester dining |
 | login.html        | Page where users can login          |
-| signup.html       | Page where users can sign up          |          |
-| user-home.html    | Page where users can view all reviews post by themselves        |
-| edit-review.html  | Page where users edit their review          |          |
-| edit-user.html    | Page where users edit personal information          |          |
+| signup.html       | Page where users can sign up                 |
+| user-home.html    | Page where users can view all reviews post by themselves (need login)       |
+| edit-review.html  | Page where users edit their review (need login)         |          |
+| edit-user.html    | Page where users edit personal information (need login)         |          |
 
 # Authentication
 Authentication is done using passport's local strategy for login and password is encrypted using sha256 on the backend and stored in db collection user. Persistent login and crediential verification is done with issuing jwt token with expiration date and is encrypted with salt set by the environmental variable. All secure routes, such as /user/delete, are protected using passport's jwt strategy.
@@ -151,12 +151,20 @@ Authentication is done using passport's local strategy for login and password is
     - post review image upload js
 
 ### Chaolong Tang
-- Created backend API end-points for the image parts, including get image by id, upload image and delete image by id.
-- Config backend CORS setting.
-- Create frontend js function on fetching image, including upload, get, and delete image.
-- Create user's home page for showing all the reviews post by this user. Also support user to edit and delete its reviews.
-- Create Edit Review Page (html and js) for user to edit its review.
-- Deploy project on Heroku.
+- Design the UI of all Dining Hall and User Home Page
+- Implement frontend html and js
+    - user home page
+    - edit user review page
+- Implement frontend fetch image function
+    - Upload image
+    - Get image by id
+    - Delete image by id
+- Implement back-end Image end-points and database crud functions
+    - Add image
+    - Get image by id
+    - Delete image by id
+- Config backend server CORS setting.
+- Add Heroku config and deploy project on Heroku.
 
 ### Xuming Deng
 Assigned: Review Parts
@@ -186,6 +194,8 @@ Assigned: Review Parts
 ### Xuming Deng
 This is my first time building a website. It was a really valuable expeirence for me. I learned a lot about how to UI design and back-end implementation, such as configuring server and database. I do encountered many difficulties, but thanks to my teammates, they gave me lots of idea and fix all those problems.  
 
+### Chaolong Tang
+This is my first time writing front-end html, css, and js code. I learned a lot on UI design and using css to style the html components. I also learned the mechanism and technique to send image through HTTP request and store in MongoDB.
 
 
 
