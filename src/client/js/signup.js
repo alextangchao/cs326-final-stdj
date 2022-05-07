@@ -8,7 +8,7 @@ async function getInfo() {
     const imgid = await process_img()
     if (password === confirmpassword) {
         return {
-            _id: document.getElementById("Username").value,
+            
             username: document.getElementById("Username").value,
             password: document.getElementById("Password").value,
             img_id: imgid
