@@ -2,10 +2,12 @@ import { getLoginUser } from "./user_crud.js";
 import { deleteReview, getRviewsByUserID } from "./review_crud.js";
 import { getImage } from "./image.js";
 import { deleteUser } from "./user_crud.js";
+import {navbarlogin} from "./diningHall.js";
 
 const cur_user = await getLoginUser();
 const cur_user_id = cur_user._id;
-
+const navcontainer = document.getElementById("nav-bar")
+navbarlogin(navcontainer, cur_user_id)
 document.getElementById("user-name").innerText = cur_user.username;
 
 document.getElementById("delete-user").addEventListener("click", async () => deleteUser({ id: cur_user_id }));

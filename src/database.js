@@ -35,6 +35,18 @@ export class DB_CRUD {
         return await this.db.collection("user").find(ObjectId(id)).toArray();
     }
 
+    async updateUser(id, password, img_id) {
+        const res = await this.db.collection("user").updateOne(
+            { username: id },
+            { $set: { password, img_id } }
+        );
+        return res;
+    }
+
+    async deletUser(id){
+        const res = await this.db.collection("user").deleteOne({ username: id });
+        return res;
+    }
     //review
     async addReview(review) {
         return await this.db.collection("review").insertOne(review);

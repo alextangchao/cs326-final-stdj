@@ -1,37 +1,26 @@
 import {getUser, updateUser} from "./user_crud.js";
 import {uploadImage} from "./image.js";
+import {process_img} from "./post_review.js";
 
-const ls = window.localStorage;
-const IMAGE_ID = "image_id";
 
-function getUpdateInfo() {
+
+async function getUpdateInfo() {
     const password = document.getElementById("Password").value;
     const confirmpassword = document.getElementById("ConfirmPassword").value
+    const imgid = await process_img()
     if (password === confirmpassword) {
         return {
-            user_id: 0,
             username: document.getElementById("Username").value,
             password: document.getElementById("Password").value,
-            confirmpassword: document.getElementById("ConfirmPassword").value,
-            review_img_id: ls.getItem(IMAGE_ID),
+            img_id: imgid
         };
     } else {
         alert("Your password is different with confirmpassword!");
     }
 }
 
-async function process_img() {
-    const img = document.getElementById("img").files[0];
-    const id = await uploadImage(img);
-    if (id !== null) {
-        ls.setItem(IMAGE_ID, id);
-    } else {
-        alert("Failed to upload img!")
-    }
-}
 
-const user = getUpdateInfo();
+const user = await getUpdateInfo();
 
-document.getElementById("img").addEventListener("change", process_img);
+
 document.getElementById("submit").addEventListener("click", updateUser(user))
-document.getElementById("user-name").innerText = (await getUser("id")).name;

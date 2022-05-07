@@ -1,9 +1,12 @@
 import { readReview, updateReview } from "./review_crud.js";
 import { uploadImage } from "./image.js";
 import { getLoginUser } from "./user_crud.js";
+import {navbarlogin} from "./diningHall.js";
 
 const cur_user = await getLoginUser();
 const cur_user_id = cur_user._id;
+const navcontainer = document.getElementById("nav-bar")
+navbarlogin(navcontainer, cur_user_id)
 const review_id = window.localStorage.getItem('edit-review-id');
 const review = await readReview(review_id);
 console.log("review", review);

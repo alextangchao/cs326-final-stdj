@@ -103,11 +103,24 @@ const fake_review_list = [fake_review_1, fake_review_2, fake_review_3]
 
 // USERS
 app.put('/user/update', async (request, response) => {
-    response.status(200).json(fake_user);
+    const options = request.body;
+    if ('username' in options && 'password' in options && 'img_id' in options) {
+        await db_crud.updateUser(options.username, options.password, options.img_id);
+        response.status(200).json(options.username);
+    } else {
+        response.status(400).json({ error: "Bad Requset: Missing params" });
+    }
+
 });
 
 app.delete('/user/delete', async (request, response) => {
-    response.status(200).json(fake_user);
+    try {
+        const { username } = req.query;
+        const user = await db_crud.deletUser(username);
+        response.status(200).json(user);
+    } catch (err) {
+        response.status(500).send(err);
+    }
 });
 
 app.get('/user', async (request, response) => {
@@ -154,11 +167,12 @@ app.post('/user/login', login_return_token);
 
 app.post('/user/register', async (request, response) => {
     const options = request.body;
-    if ('username' in options && 'password' in options) {
-        const user = { username: options.username, password: options.password };
+    if ('username' in options && 'password' in options && 'img_id' in options) {
+        const user = { username: options.username, password: options.password, img_id : options.img_id };
         // to do handle images
         await db_crud.addUserToDB(user);
-        response.status(200).json(user);
+
+        response.status(200).json(user).redirect('/user/login');
     } else {
         response.status(400).json({ error: "Bad Requset: Missing params" });
     }

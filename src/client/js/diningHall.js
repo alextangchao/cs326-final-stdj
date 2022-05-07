@@ -1,10 +1,34 @@
 import { getReviewsByLocation, getRviewsByUserID } from "./review_crud.js";
 import { getUserWithID } from "./user_crud.js";
 import { getImage } from "./image.js";
-
+import { getLoginUser } from "./user_crud.js"
 const cur_location = window.location.pathname.slice(1, -5);
 const review_container = document.getElementById("review-container");
 const review_list = await getReviewsByLocation(cur_location);
+
+if (getLoginUser() !== null){
+    const cur_user = await getLoginUser();
+    const cur_user_id = cur_user._id;
+    const navcontainer = document.getElementById("nav-bar")
+    navbarlogin(navcontainer, cur_user_id)
+}
+
+export async function navbarlogin(navcontainer, cur_user_id){
+    navcontainer.innerHTML = ""
+    navcontainer.innerHTML = navloginhtml(cur_user_id)
+}
+
+function navloginhtml(cur_user_id){
+    return `<ul>
+        <li class="left"><a href="inclassNametml">Home</a></li>
+        <li class="left"><a href="beclassNamere.html">Berkshire</a></li>
+        <li class="left"><a href="haclassNamere.html">Hampshire</a></li>
+        <li class="left"><a href="frclassNamen.html">Franklin</a></li>
+        <li class="left"><a href="woclassNameer.html">Worcester</a></li>
+        <li class="right"><a href="uclassNameome.html">${cur_user_id}</a></li>
+        <li class="right"><a href="uclassNameome.html">Profile</a></li>
+    </ul>`
+}
 
 reviewsRender(review_list, review_container)
 

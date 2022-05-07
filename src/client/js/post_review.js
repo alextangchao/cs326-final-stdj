@@ -1,10 +1,12 @@
 import { createReview } from "./review_crud.js";
 import { uploadImage } from "./image.js";
 import { getLoginUser } from "./user_crud.js";
+import {navbarlogin} from "./diningHall.js";
 
 const cur_user = await getLoginUser();
 const cur_user_id = cur_user._id;
-
+const navcontainer = document.getElementById("nav-bar")
+navbarlogin(navcontainer, cur_user_id)
 function gather_review_info() {
     console.log("Gathering Information")
     return {

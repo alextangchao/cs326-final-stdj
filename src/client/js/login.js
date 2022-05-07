@@ -2,6 +2,7 @@ import { loginUser } from "./user_crud.js";
 
 function getInfo() {
     return {
+        _id: document.getElementById("Username").value,
         username: document.getElementById("Username").value,
         password: document.getElementById("Password").value
     };

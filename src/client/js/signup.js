@@ -1,12 +1,17 @@
 import { registerUser } from "./user_crud.js";
+import { uploadImage } from "./image.js";
+import {process_img} from "./post_review.js";
 
-function getInfo() {
+async function getInfo() {
     const password = document.getElementById("Password").value;
     const confirmpassword = document.getElementById("ConfirmPassword").value
+    const imgid = await process_img()
     if (password === confirmpassword) {
         return {
+            _id: document.getElementById("Username").value,
             username: document.getElementById("Username").value,
-            password: document.getElementById("Password").value
+            password: document.getElementById("Password").value,
+            img_id: imgid
         };
     } else {
         alert("Your password is different with confirm password!");
@@ -14,6 +19,6 @@ function getInfo() {
 }
 
 document.getElementById("signup").addEventListener("click", async function() {
-    const user = getInfo();
+    const user = await getInfo();
     registerUser(user)
 });
