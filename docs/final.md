@@ -132,11 +132,23 @@ Authentication is done using passport's local strategy for login and password is
 
 # Division of Labor
 ### RuiLong Jiang
-- Init express server and serve static client files. 
-- Setup backend endpoint user/update, delete, review/update, delete with const faker_review and faker_user. 
-- Frontend crud js for sending the corresponding PUT/DELETE request. 
-- Post review page's frontend js for review form submission with image. 
-- Add edit-user.html for user to make changes to account details.
+- Server/database setup
+    - express server and env file
+    - database connection
+- Authentication
+    - passport js local strategy
+    - jwt token signing
+    - example secure route GET /users with jwt strategy
+- Implemented end-points
+    - POST /user/login
+    - POST /user/register
+    - /user/(update/delete) (skeleton with faker)
+    - /review/(update/delete) (skeleton with faker)
+- Implemented frontend html/js
+    - home/index.html - nav bar / banner image
+    - edit-user.html
+    - user_crud.js on user/review update/delete
+    - post review image upload js
 
 ### Chaolong Tang
 - Created backend API end-points for the image parts, including get image by id, upload image and delete image by id.
