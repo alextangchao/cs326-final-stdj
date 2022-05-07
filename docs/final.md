@@ -184,18 +184,27 @@ Assigned: Review Parts
     - Generating review and render on each dining hall page
 
 ### Hongwei Shu
-- Created end-points for user/loign, user/register, user/get
-- Created edit_user.js for update user profile
-- Created loginsing_user.js for login and register
+- Implemented end-points for user.
+  - user/register
+  - user/update
+  - user/delete
+- Implemented the navigation bar after login
+- Implemented login/signup html and js part
+- Image part with user information
+- Front-end design for login/signup/edit user
+- Implemented edit_user for edit user profile
 - Updated user profile edit (HTML) and delete(request in js)
 
 
 # Conclusion
 ### Xuming Deng
-This is my first time building a website. It was a really valuable expeirence for me. I learned a lot about how to UI design and back-end implementation, such as configuring server and database. I do encountered many difficulties, but thanks to my teammates, they gave me lots of idea and fix all those problems.  
+This is my first time building a website. It was a really valuable expeirence for me. I learned a lot about how to UI design and back-end implementation, such as configuring server and database. I do encountered many difficulties, but thanks to my teammates, they gave me lots of idea and fix all those problems.
 
 ### Chaolong Tang
 This is my first time writing front-end html, css, and js code. I learned a lot on UI design and using css to style the html components. I also learned the mechanism and technique to send image through HTTP request and store in MongoDB.
+
+### Hongwei Shu
+I am an Informatics major student. This is actually the first time writing a project about website. I believe this course taught me a lot about web programming. I learned how to build a website in detailed. There are many difficulties such as writing backend and deploy the website. Thanks to my teammates and TAs, they help me a lot when solving these problems.
 
 
 
