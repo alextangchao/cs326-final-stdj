@@ -147,14 +147,21 @@ Authentication is done using passport's local strategy for login and password is
 - Deploy project on Heroku.
 
 ### Xuming Deng
-Assigned: review/location, create, get
-- Created end-points for review/location, review/create, review/id
-- Created Fake Reviews
-- Created Dining Hall Page for (Hampshire, Berkshire, Franklin, Worcester)
+Assigned: Review Parts
+- Implemented end-points for reviews. 
+    - /review/location?name=
+    - /review/create
+    - /review?id=
+- Implemented database function for reviews.
+    - addReview
+    - deleteReview
+    - getReview
+    - getReviewByLocation
+    - getReviewByUserID
+- Front-end UI design for reviews.
 - Implemented DiningHall.js
     - Fetching all the reviews from the server (For specific dining hall)
     - Generating review and render on each dining hall page
-- Update CSS files and HTML for review component.
 
 ### Hongwei Shu
 - Created end-points for user/loign, user/register, user/get
@@ -164,7 +171,8 @@ Assigned: review/location, create, get
 
 
 # Conclusion
-
+### Xuming Deng
+This is my first time building a website. It was a really valuable expeirence for me. I learned a lot about how to UI design and back-end implementation, such as configuring server and database. I do encountered many difficulties, but thanks to my teammates, they gave me lots of idea and fix all those problems.  
 
 
 
