@@ -1,21 +1,19 @@
-import { MongoClient, ServerApiVersion, GridFSBucket, ObjectId } from 'mongodb';
-import 'dotenv/config';
-import crypto from 'crypto';
-
+import { MongoClient, ServerApiVersion, GridFSBucket, ObjectId } from "mongodb";
+import "dotenv/config";
+import crypto from "crypto";
 
 export class DB_CRUD {
-    constructor() {
-    }
+    constructor() {}
 
     async connect(db_url, db_name) {
         try {
             this.client = await MongoClient.connect(db_url, {
                 useNewUrlParser: true,
                 useUnifiedTopology: true,
-                serverApi: ServerApiVersion.v1
+                serverApi: ServerApiVersion.v1,
             });
             this.db = this.client.db(db_name);
-            this.gfs = new GridFSBucket(this.db, { bucketName: 'image' });
+            this.gfs = new GridFSBucket(this.db, { bucketName: "image" });
         } catch (e) {
             console.error(e);
         }
@@ -36,15 +34,16 @@ export class DB_CRUD {
     }
 
     async updateUser(id, password, img_id) {
-        const res = await this.db.collection("user").updateOne(
-            { username: id },
-            { $set: { password, img_id } }
-        );
+        const res = await this.db
+            .collection("user")
+            .updateOne({ username: id }, { $set: { password, img_id } });
         return res;
     }
 
-    async deletUser(id){
-        const res = await this.db.collection("user").deleteOne({ username: id });
+    async deletUser(id) {
+        const res = await this.db
+            .collection("user")
+            .deleteOne({ username: id });
         return res;
     }
     //review
@@ -53,32 +52,44 @@ export class DB_CRUD {
     }
 
     async deleteReview(id) {
-        return await this.db.collection("review").deleteOne({ _id: ObjectId(id) });
+        return await this.db
+            .collection("review")
+            .deleteOne({ _id: ObjectId(id) });
     }
 
     async getReview(id) {
-        return await this.db.collection("review").find({ _id: ObjectId(id) }).toArray();
+        return await this.db
+            .collection("review")
+            .find({ _id: ObjectId(id) })
+            .toArray();
     }
 
     async getReviewByLocation(location) {
         if (location === "index") {
             return await this.db.collection("review").find().toArray();
         }
-        return await this.db.collection("review").find({ location: location }).toArray();
+        return await this.db
+            .collection("review")
+            .find({ location: location })
+            .toArray();
     }
 
     async getReviewByUserID(user_id) {
-        return await this.db.collection("review").find({ user_id: user_id }).toArray();
+        return await this.db
+            .collection("review")
+            .find({ user_id: user_id })
+            .toArray();
     }
 
     async updateReview(id, review) {
         const filter = { _id: ObjectId(id) };
         const updateReview = {
-            $set: review
-        }
+            $set: review,
+        };
         const options = { upsert: false };
-        console.log("update parm", filter, updateReview);
-        return await this.db.collection("review").updateOne(filter, updateReview, options);
+        return await this.db
+            .collection("review")
+            .updateOne(filter, updateReview, options);
     }
 
     //image
@@ -96,7 +107,7 @@ export class DB_CRUD {
 }
 
 export function crypto_hash(password) {
-    return crypto.createHash('sha256').update(password).digest('hex');
+    return crypto.createHash("sha256").update(password).digest("hex");
 }
 
 async function main() {
@@ -114,5 +125,5 @@ async function listDatabases(client) {
     const databasesList = await client.db().admin().listDatabases();
 
     console.log("Databases:");
-    databasesList.databases.forEach(db => console.log(` - ${db.name}`));
+    databasesList.databases.forEach((db) => console.log(` - ${db.name}`));
 }
