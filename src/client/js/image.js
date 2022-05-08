@@ -5,11 +5,11 @@
  */
 export async function uploadImage(image) {
     const formData = new FormData();
-    formData.append('image', image);
+    formData.append("image", image);
     const response = await fetch("/image/create", {
-        method: 'POST',
+        method: "POST",
         body: formData,
-    })
+    });
     if (response.ok && response.status === 200) {
         const data = await response.json();
         return data.id;
@@ -24,8 +24,8 @@ export async function uploadImage(image) {
  */
 export async function getImage(id) {
     const response = await fetch("/image?id=" + id, {
-        method: 'GET',
-    })
+        method: "GET",
+    });
     if (response.ok && response.status === 200) {
         const data = await response.blob();
         const imageURL = URL.createObjectURL(data);
@@ -41,12 +41,12 @@ export async function getImage(id) {
  */
 export async function deleteImage(id) {
     const response = await fetch("/image/delete", {
-        method: 'DELETE',
+        method: "DELETE",
         headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
         },
         body: JSON.stringify({ id: id }),
-    })
+    });
     if (response.ok && response.status === 200) {
         const data = await response.json();
         return data.id;
