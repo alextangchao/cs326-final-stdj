@@ -1,6 +1,3 @@
-// import { response } from "express";
-import { config } from "./config.js";
-
 export async function updateReview(review) {
     const response = await fetch(`/review/update`, {
         method: "PUT",

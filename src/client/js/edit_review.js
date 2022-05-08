@@ -29,24 +29,9 @@ function gather_review_info() {
     };
 }
 
-// async function process_img() {
-//     const img_files = document.getElementById("img").files
-//     if (img_files === undefined || img_files.length === 0) {
-//         return null;
-//     }
-//     const img = img_files[0];
-//     const id = await uploadImage(img);
-//     if (id === null) {
-//         alert("Failed to upload img!")
-//         return null;
-//     }
-//     return id;
-// }
-
 async function update_review() {
     const new_review = gather_review_info();
     new_review.review_id = review._id;
-    // new_review.review_img_id = await process_img();
 
     const resp = await updateReview(new_review);
     if (resp === null) {

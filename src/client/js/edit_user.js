@@ -1,5 +1,4 @@
-import { getUser, updateUser } from "./user_crud.js";
-import { uploadImage } from "./image.js";
+import { updateUser } from "./user_crud.js";
 import { process_img } from "./post_review.js";
 
 async function getUpdateInfo() {
