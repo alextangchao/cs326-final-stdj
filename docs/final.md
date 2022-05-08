@@ -206,6 +206,8 @@ This is my first time writing front-end html, css, and js code. I learned a lot 
 ### Hongwei Shu
 I am an Informatics major student. This is actually the first time writing a project about website. I believe this course taught me a lot about web programming. I learned how to build a website in detailed. There are many difficulties such as writing backend and deploy the website. Thanks to my teammates and TAs, they help me a lot when solving these problems.
 
+### RuiLong Jiang
+Overall good, no significant challenges met during development and it's nice to learn/practice about frontend development with html/js. Also great to explore mongodb for its easy to use query and insertion compared to postgresql. One thing I would say that I wish I'd have know is a recommended file/functions hiearchy/structure because we winged it and rolled with punches for this project. Not sure if there's a better way to do this.
 
 
 
