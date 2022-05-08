@@ -17,7 +17,7 @@ Xuming Deng (Silvennnn) \
 Hongwei Shu ()
 
 
-# User Interface //TODO Upload Image
+# User Interface
 - Home 
     - Home is the first page when user enter our website. It will list a few latest reviews from each dining hall. Also, it contians the navigation bar to help user navigate our website.
 ![Home](./img/home-final.png)
