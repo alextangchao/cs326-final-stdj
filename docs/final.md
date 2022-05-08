@@ -20,6 +20,7 @@ Hongwei Shu ()
 # User Interface //TODO Upload Image
 - Home 
     - Home is the first page when user enter our website. It will list a few latest reviews from each dining hall. Also, it contians the navigation bar to help user navigate our website.
+![Home](./img/home-final.png)
 
 - Dining Hall Pages
     - Each page contain the reviews for specific dining hall and reviews are sorted by date (Latest First)
@@ -27,18 +28,23 @@ Hongwei Shu ()
         - Hampshire
         - Franklin
         - Worcester
+![dining](./img/diningHall-final.png)
 
 - Post Review
     -  Page where user could create and post their review for each dining hall.
+![postReview](./img/postReview.png)
 
 - Sign up
     - Page where user could create an account
+![Signup](./img/signup.png)
 
 - Login
     - Page where user could login to our website.
+![Login](./img/login.png)
 
 - User Home
     - Page where user could manage(edit/delete) all their posted reviews.
+![Userhome](./img/userhome.png)
 
 # APIs
 
